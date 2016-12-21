@@ -1,0 +1,23 @@
+##
+Catapult
+##
+Mode DO_NOTHING
+End Mode
+Mode MODE_1
+driveToWP (defaultProps,48,0,0)
+driveToWP (defaultProps,0,24,0)
+##
+driveToWP (defaultProps,0,0,90)
+##
+End Mode
+Mode FENCE
+{
+autoCock (robotCatapult,1) ||
+timeout (500)
+}
+autoCock (robotCatapult,0)
+driveToWP (defaultProps,48,0,0)
+driveToWP (defaultProps,0,0,90)
+driveToWP (defaultProps,-18,0,0)
+driveToWP (defaultProps,80,0,0)
+End Mode
