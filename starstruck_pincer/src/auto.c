@@ -101,14 +101,11 @@ DriveToWPProperties * defaultProps;
 DriveToWP * command1;
 DriveToWP * command2;
 
-AutoCock * command3;
-Timeout * command4;
-
-AutoCock * command5;
+Timeout * command3;
+DriveToWP * command4;
+DriveToWP * command5;
 DriveToWP * command6;
 DriveToWP * command7;
-DriveToWP * command8;
-DriveToWP * command9;
 
 // END OF DECLARATIONS
 
@@ -136,14 +133,11 @@ if(autonomousSelection == MODE_1)
 }
 if(autonomousSelection == FENCE)
 {
-	command3 = initAutoCock(robotCatapult,1);
-	command4 = initTimeout(500);
-
-	command5 = initAutoCock(robotCatapult,0);
-	command6 = initDriveToWP(defaultProps,48,0,0);
-	command7 = initDriveToWP(defaultProps,0,0,90);
-	command8 = initDriveToWP(defaultProps,-18,0,0);
-	command9 = initDriveToWP(defaultProps,80,0,0);
+	command3 = initTimeout(500);
+	command4 = initDriveToWP(defaultProps,48,0,0);
+	command5 = initDriveToWP(defaultProps,0,0,90);
+	command6 = initDriveToWP(defaultProps,-18,0,0);
+	command7 = initDriveToWP(defaultProps,80,0,0);
 }
 	// END OF INSTANTIATIONS
 
@@ -205,34 +199,29 @@ void autonomousPeriodic()
 		switch(autonomousInfo.step)
 		{
 			case(1):
-				autoCock(command3);
-				timeout(command4);
-				autonomousInfo.isFinished = (*command3).isFinished || (*command4).isFinished;
+				timeout(command3);
+
+				autonomousInfo.isFinished = (*command3).isFinished;
 				break;
 			case(2):
-				autoCock(command5);
+				driveToWP(command4);
+
+				autonomousInfo.isFinished = (*command4).isFinished;
+				break;
+			case(3):
+				driveToWP(command5);
 
 				autonomousInfo.isFinished = (*command5).isFinished;
 				break;
-			case(3):
+			case(4):
 				driveToWP(command6);
 
 				autonomousInfo.isFinished = (*command6).isFinished;
 				break;
-			case(4):
+			case(5):
 				driveToWP(command7);
 
 				autonomousInfo.isFinished = (*command7).isFinished;
-				break;
-			case(5):
-				driveToWP(command8);
-
-				autonomousInfo.isFinished = (*command8).isFinished;
-				break;
-			case(6):
-				driveToWP(command9);
-
-				autonomousInfo.isFinished = (*command9).isFinished;
 				break;
 
 

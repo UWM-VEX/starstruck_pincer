@@ -14,9 +14,10 @@
 int limit(int, int, int);
 int abs(int);
 int inDeadBand(int realNum, int desiredNum, int deadBand);
-double encoderToInches(int encoderLines, double wheelDiameter);
+double encoderToInches(double encoderLines, double wheelDiameter);
 double absDouble(double num);
 int inDeadBand(int realNum, int desiredNum, int deadBand);
 int inDeadBandDouble(double realNum, double desiredNum, double deadBand);
+int enforceDeadband(int input, int desiredNumber, int deadband);
 
 #endif /* UTILITIES_H_ */

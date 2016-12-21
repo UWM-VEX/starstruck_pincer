@@ -10,9 +10,11 @@
 
 #include "main.h"
 
-#define WHEEL_DIAMETER 4.25
+#define WHEEL_DIAMETER 3.25
+#define IN 0
+#define OUT 1
 
 Drive robotDrive;
-Catapult *robotCatapult;
+Dumper * robotDumper;
 
 #endif /* INCLUDE_ROBOT_H_ */

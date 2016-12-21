@@ -42,16 +42,6 @@ void operatorControl()
 		holonomicDrive(robotDrive, OIGetDriveMagnitude(), OIGetDriveDirection(),
 				OIGetDriveRotation());
 
-		if(OIGetCatapultAuto())
-		{
-			robotCatapult->mode = CATAPULT_AUTO;
-			runCatapult(robotCatapult, OIGetFire());
-		}
-		else
-		{
-			runCatapultAtSpeed(robotCatapult, - OIGetCatapultManual());
-		}
-
 		delay(25);
 	}
 }

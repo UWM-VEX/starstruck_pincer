@@ -34,9 +34,9 @@ int inDeadBand(int realNum, int desiredNum, int deadBand)
 	return (abs(realNum - desiredNum) < deadBand);
 }
 
-double encoderToInches(int encoderLines, double wheelDiameter)
+double encoderToInches(double encoderLines, double wheelDiameter)
 {
-	return ((encoderLines / 360.0) * PI * wheelDiameter * SIN_45);
+	return ((encoderLines / 360.0) * PI * wheelDiameter);
 }
 
 double absDouble(double num)
@@ -48,4 +48,12 @@ double absDouble(double num)
 int inDeadBandDouble(double realNum, double desiredNum, double deadBand)
 {
 	return (absDouble(realNum - desiredNum) < deadBand);
+}
+
+int enforceDeadband(int input, int desiredNumber, int deadband)
+{
+	if(abs(input - desiredNumber) <= deadband)
+		return 0;
+	else
+		return input;
 }
