@@ -10,7 +10,6 @@
 
 int OIGetDriveLeft();
 int OIGetDriveRight();
-int OIGetDumper();
 int OIGetDriveY();
 int OIGetDriveX();
 int OIGetDriveMagnitude();
@@ -20,11 +19,9 @@ int OIGetDumper();
 int OIGetDumperLow();
 int OIGetDumperTravel();
 int OIGetDumperHigh();
-int OIGetDumperDump();
 int OIGetDumperHang();
-int OIGetAntiTipIn();
-int OIGetAntiTipOut();
-int OIGetLiftLockIn();
-int OIGetLiftLockOut();
+int OIGetClawManual();
+int OIGetClawOpen();
+int OIGetClawClose();
 
 #endif /* INCLUDE_OI_H_ */

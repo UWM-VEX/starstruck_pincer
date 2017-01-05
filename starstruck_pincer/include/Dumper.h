@@ -14,12 +14,8 @@
 #define DUMPER_LOW 0
 #define DUMPER_TRAVEL 1
 #define DUMPER_HIGH 2
-#define DUMPER_DUMP 3
-#define DUMPER_HANG 4
-#define DUMPER_AUTO_HEIGHT 5
-
-#define DUMPER_RAISING 0
-#define DUMPER_FALLING 1
+#define DUMPER_HANG 3
+#define DUMPER_AUTO_HEIGHT 4
 
 struct Dumper {
 	PantherMotor topLeft;
@@ -50,7 +46,6 @@ void runDumperAtSpeed(Dumper * shovel, int speed);
 int dumperToHeight(Dumper *dumper, double height);
 void updateDumperPID(Dumper * dumper);
 double getDumperHeight(Dumper * dumper);
-void dumperDump(Dumper * dumper);
 void dumperTeleop(Dumper * dumper);
 
 #endif /* INCLUDE_DUMPER_H_ */

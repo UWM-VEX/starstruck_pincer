@@ -16,5 +16,6 @@
 
 Drive robotDrive;
 Dumper * robotDumper;
+Claw * robotClaw;
 
 #endif /* INCLUDE_ROBOT_H_ */

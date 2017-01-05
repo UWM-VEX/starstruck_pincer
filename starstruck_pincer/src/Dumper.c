@@ -25,7 +25,6 @@ Dumper * initDumper(PantherMotor topLeft, PantherMotor frontLeft, PantherMotor b
 	newDumper->pidController = initPIDController(kP, kI, kD, 0, 0, 3);
 	newDumper->mode = DUMPER_MANUAL;
 	newDumper->height = DUMPER_LOW;
-	newDumper->dumpState = DUMPER_RAISING;
 	newDumper->lowHeight = lowHeight;
 	newDumper->travelHeight = travelHeight;
 	newDumper->highHeight = highHeight;
@@ -83,35 +82,6 @@ double getDumperHeight(Dumper * dumper)
 	}
 }
 
-void dumperDump(Dumper * dumper)
-{
-	double pv = potGetScaledValue(dumper->pot);
-	if(dumper->dumpState == DUMPER_RAISING)
-	{
-		if(inDeadBandDouble(pv, dumper->highHeight, .02))
-		{
-			dumper->dumpState = DUMPER_FALLING;
-		}
-		else
-		{
-			dumperToHeight(dumper, dumper->highHeight);
-		}
-	}
-
-	if(dumper->dumpState == DUMPER_FALLING)
-	{
-		if(inDeadBandDouble(pv, dumper->lowHeight, .02))
-		{
-			dumper->height = DUMPER_LOW;
-			dumper->dumpState = DUMPER_RAISING;
-		}
-		else
-		{
-			dumperToHeight(dumper, dumper->lowHeight);
-		}
-	}
-}
-
 void dumperTeleop(Dumper * dumper)
 {
 	if(abs(OIGetDumper()) > 20)
@@ -137,11 +107,6 @@ void dumperTeleop(Dumper * dumper)
 			dumper->mode = DUMPER_AUTO;
 			dumper->height = DUMPER_HIGH;
 		}
-		else if(OIGetDumperDump())
-		{
-			dumper->mode = DUMPER_AUTO;
-			dumper->height = DUMPER_DUMP;
-		}
 		else if(OIGetDumperHang())
 		{
 			dumper->mode = DUMPER_AUTO;
@@ -155,15 +120,8 @@ void dumperTeleop(Dumper * dumper)
 	}
 	else
 	{
-		if(dumper->height != DUMPER_DUMP)
-		{
-			double height = getDumperHeight(dumper);
-			dumperToHeight(dumper, height);
-		}
-		else
-		{
-			dumperDump(dumper);
-		}
+		double height = getDumperHeight(dumper);
+		dumperToHeight(dumper, height);
 	}
 
 	updateDumperPID(dumper);
