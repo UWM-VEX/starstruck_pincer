@@ -25,7 +25,7 @@ Claw * initClaw(PantherMotor motor1, PantherMotor motor2, Pot * pot, double open
 void runClawAtSpeed(Claw * claw, int speed)
 {
 	setPantherMotor(claw->motor1, speed);
-	setPantherMotor(claw->motor2, speed);
+	setPantherMotor(claw->motor2, -speed);
 }
 
 double clawToPosition(Claw * claw, double sp)
@@ -33,7 +33,7 @@ double clawToPosition(Claw * claw, double sp)
 	double pv = potGetScaledValue(claw->pot);
 	double error = sp - pv;
 
-	if(absDouble(error) < 0.05)
+	if(absDouble(error) < 0.1)
 	{
 		runClawAtSpeed(claw, 0);
 		return 0;
@@ -67,14 +67,15 @@ double clawClose(Claw * claw)
 
 void clawTeleop(Claw * claw)
 {
+	lcdPrint(uart1, 1, "Claw: %f", potGetScaledValue(claw->pot));
 	if(abs(OIGetClawManual()) > 20)
 	{
 		claw->mode = CLAW_MANUAL;
-		lcdSetText(uart1, 2, "Manual");
+		//lcdSetText(uart1, 2, "Manual");
 	}
 	else
 	{
-		lcdSetText(uart1, 2, "Auto");
+		//lcdSetText(uart1, 2, "Auto");
 		if(OIGetClawOpen())
 		{
 			claw->mode = CLAW_AUTO;
@@ -87,7 +88,7 @@ void clawTeleop(Claw * claw)
 		}
 	}
 
-	if(claw->mode == DUMPER_MANUAL)
+	if(claw->mode == CLAW_MANUAL)
 	{
 		runClawAtSpeed(claw, OIGetClawManual());
 	}

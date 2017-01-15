@@ -85,5 +85,5 @@ int OIGetClawOpen()
 int OIGetClawClose()
 {
 	return joystickGetDigital(1,6,JOY_UP) ||
-			joystickGetDigital(1,6,JOY_DOWN);
+			joystickGetDigital(2,6,JOY_UP);
 }

@@ -19,12 +19,8 @@
 
 struct Dumper {
 	PantherMotor topLeft;
-	PantherMotor frontLeft;
-	PantherMotor backLeft;
 	PantherMotor bottomLeft;
 	PantherMotor topRight;
-	PantherMotor frontRight;
-	PantherMotor backRight;
 	PantherMotor bottomRight;
 	Pot * pot;
 	PIDController * pidController;
@@ -38,10 +34,10 @@ struct Dumper {
 	double autoHeight;
 }typedef Dumper;
 
-Dumper * initDumper(PantherMotor topLeft, PantherMotor frontLeft, PantherMotor backLeft,
-		PantherMotor bottomLeft, PantherMotor topRight, PantherMotor frontRight,
-		PantherMotor backRight, PantherMotor bottomRight, Pot * pot, double kP, double kI, double kD,
-		double lowHeight, double travelHeight, double highHeight, double hangHeight, double autoHeight);
+Dumper * initDumper(PantherMotor topLeft, PantherMotor bottomLeft, PantherMotor topRight,
+		PantherMotor bottomRight, Pot * pot, double kP, double kI, double kD,
+		double lowHeight, double travelHeight, double highHeight, double hangHeight,
+		double autoHeight);
 void runDumperAtSpeed(Dumper * shovel, int speed);
 int dumperToHeight(Dumper *dumper, double height);
 void updateDumperPID(Dumper * dumper);
