@@ -54,7 +54,7 @@ void updateDumperPID(Dumper * dumper)
 	double pv = potGetScaledValue(dumper->pot);
 	PIDRunController(dumper->pidController, pv);
 
-	lcdPrint(uart1, 2, "Lift: %f", potGetScaledValue(dumper->pot));
+	//lcdPrint(uart1, 2, "Lift: %f", potGetScaledValue(dumper->pot));
 	//lcdPrint(uart1, 1, "Raw: %d", potGetRawValue(dumper->pot));
 }
 

@@ -18,34 +18,57 @@ Claw * initClaw(PantherMotor motor1, PantherMotor motor2, Pot * pot, double open
 	newClaw->close = close;
 	newClaw->mode = CLAW_MANUAL;
 	newClaw->autoState = CLAW_OPEN;
+	newClaw->lastPot = potGetRawValue(newClaw->pot);
 
 	return newClaw;
 }
 
 void runClawAtSpeed(Claw * claw, int speed)
 {
+	claw->lastPot = potGetRawValue(claw->pot);
+
 	setPantherMotor(claw->motor1, speed);
 	setPantherMotor(claw->motor2, -speed);
 }
 
-double clawToPosition(Claw * claw, double sp)
+double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNegError)
 {
 	double pv = potGetScaledValue(claw->pot);
+	int movement = potGetRawValue(claw->pot) - claw->lastPot;
 	double error = sp - pv;
 
-	if(absDouble(error) < 0.1)
+	if(absDouble(error) < 0.02)
 	{
 		runClawAtSpeed(claw, 0);
 		return 0;
 	}
-	else if(error > 0)
+	else if(error > 0 && correctPosError)
 	{
-		runClawAtSpeed(claw, 127);
+		if(abs(movement) > 15)
+		{
+			runClawAtSpeed(claw, 127);
+		}
+		else
+		{
+			runClawAtSpeed(claw, 50);
+		}
+		return error;
+	}
+	else if(correctNegError)
+	{
+		if(abs(movement) > 15)
+		{
+			runClawAtSpeed(claw, -127);
+		}
+		else
+		{
+			runClawAtSpeed(claw, -50);
+		}
 		return error;
 	}
 	else
 	{
-		runClawAtSpeed(claw, -127);
+		runClawAtSpeed(claw,0);
 		return error;
 	}
 }
@@ -57,17 +80,18 @@ int clawGetMode(Claw * claw)
 
 double clawOpen(Claw * claw)
 {
-	return clawToPosition(claw, claw->open);
+	return clawToPosition(claw, claw->open, 1, 0);
 }
 
 double clawClose(Claw * claw)
 {
-	return clawToPosition(claw, claw->close);
+	return clawToPosition(claw, claw->close, 0, 1);
 }
 
 void clawTeleop(Claw * claw)
 {
-	lcdPrint(uart1, 1, "Claw: %f", potGetScaledValue(claw->pot));
+	lcdPrint(uart1, 1, "Movement: %d", potGetRawValue(claw->pot) - claw->lastPot);
+	lcdPrint(uart1, 2, "Value: %f", potGetScaledValue(claw->pot));
 	if(abs(OIGetClawManual()) > 20)
 	{
 		claw->mode = CLAW_MANUAL;

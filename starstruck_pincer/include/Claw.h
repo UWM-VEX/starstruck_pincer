@@ -22,12 +22,13 @@ struct Claw{
 	double close;
 	int mode;
 	int autoState;
+	int lastPot;
 
 }typedef Claw;
 
 Claw * initClaw(PantherMotor motor1, PantherMotor motor2, Pot * pot, double open, double close);
 void runClawAtSpeed(Claw * claw, int speed);
-double clawToPosition(Claw * claw, double sp);
+double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNegError);
 int clawGetMode(Claw * claw);
 double clawOpen(Claw * claw);
 double clawClose(Claw * claw);
