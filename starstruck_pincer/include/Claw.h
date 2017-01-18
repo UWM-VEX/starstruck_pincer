@@ -12,6 +12,7 @@
 #define CLAW_MANUAL 1
 #define CLAW_OPEN 0
 #define CLAW_CLOSE 1
+#define CLAW_STOP 2
 
 struct Claw{
 
