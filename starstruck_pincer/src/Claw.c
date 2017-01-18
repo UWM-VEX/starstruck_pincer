@@ -40,36 +40,38 @@ double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNe
 	if(absDouble(error) < 0.02)
 	{
 		runClawAtSpeed(claw, 0);
-		return 0;
+		return 1;
 	}
 	else if(error > 0 && correctPosError)
 	{
 		if(abs(movement) > 15)
 		{
 			runClawAtSpeed(claw, 127);
+			return 0;
 		}
 		else
 		{
 			runClawAtSpeed(claw, 50);
+			return 1;
 		}
-		return error;
 	}
 	else if(correctNegError)
 	{
 		if(abs(movement) > 15)
 		{
 			runClawAtSpeed(claw, -127);
+			return 0;
 		}
 		else
 		{
 			runClawAtSpeed(claw, -50);
+			return 1;
 		}
-		return error;
 	}
 	else
 	{
 		runClawAtSpeed(claw,0);
-		return error;
+		return 1;
 	}
 }
 

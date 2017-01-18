@@ -20,5 +20,17 @@ AutoClaw * initAutoClaw(Claw * claw, int type)
 
 void autoClaw(AutoClaw * step)
 {
-	clawToPosition(step->claw, step->type);
+	if(step->type == CLAW_OPEN)
+	{
+		step->isFinished = clawOpen(step->claw);
+	}
+	else if(step->type == CLAW_CLOSE)
+	{
+		step->isFinished = clawClose(step->claw);
+	}
+	else
+	{
+		runClawAtSpeed(step->claw, 0);
+		step->isFinished = 1;
+	}
 }

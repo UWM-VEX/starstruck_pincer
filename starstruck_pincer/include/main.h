@@ -55,6 +55,8 @@
 #include "Robot.h"
 #include "Auto.h"
 #include "DriveToWP.h"
+#include "AutoDumper.h"
+#include "AutoClaw.h"
 #include "Timeout.h"
 
 
