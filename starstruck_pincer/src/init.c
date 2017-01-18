@@ -176,6 +176,7 @@ void initialize() {
 			initPantherMotor(8, 0), initPantherMotor(9, 1),
 			initPot(2, 920, 4095), 900, 0, 0, 0, .10, 0.95, 0.67, 0.60);
 	robotClaw = initClaw(initPantherMotor(1,0), initPantherMotor(10,0), initPot(3,4095,1085), 0.4, 0);
+
 	lcdModeSelect();
 
 	//puts("LCD Finished");
