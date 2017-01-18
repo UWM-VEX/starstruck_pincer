@@ -23,5 +23,6 @@ int OIGetDumperHang();
 int OIGetClawManual();
 int OIGetClawOpen();
 int OIGetClawClose();
+int OIGetDumperOverride();
 
 #endif /* INCLUDE_OI_H_ */

@@ -30,12 +30,20 @@ Dumper * initDumper(PantherMotor topLeft,
 	return newDumper;
 }
 
-void runDumperAtSpeed(Dumper * shovel, int speed)
+void runDumperAtSpeed(Dumper * dumper, int speed)
 {
-	setPantherMotor(shovel->topLeft, speed);
-	setPantherMotor(shovel->bottomLeft, speed);
-	setPantherMotor(shovel->topRight, speed);
-	setPantherMotor(shovel->bottomRight, speed);
+	if( ! OIGetDumperOverride())
+	{
+		int max = (potGetScaledValue(dumper->pot) > 1.0) ? 0 : 127;
+		int min = (potGetScaledValue(dumper->pot) < 0.0) ? 0 : -127;
+
+		speed = limit(speed, max, min);
+	}
+
+	setPantherMotor(dumper->topLeft, speed);
+	setPantherMotor(dumper->bottomLeft, speed);
+	setPantherMotor(dumper->topRight, speed);
+	setPantherMotor(dumper->bottomRight, speed);
 }
 
 int dumperToHeight(Dumper *dumper, double height)
