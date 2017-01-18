@@ -100,12 +100,7 @@ DriveToWPProperties * defaultProps;
 
 DriveToWP * command1;
 DriveToWP * command2;
-
-Timeout * command3;
-DriveToWP * command4;
-DriveToWP * command5;
-DriveToWP * command6;
-DriveToWP * command7;
+DriveToWP * command3;
 
 // END OF DECLARATIONS
 
@@ -118,9 +113,9 @@ void autonomousInit()
 	 */
 
 	defaultProps = initDriveToWPProperties(robotDrive,
-			0.5, 18, 500, 100, 30, // MAG
-			0.5, 18, 500, 100, 40, // DIR
-			2, 40, 70, 40, 4.25, 1, 500); //ROT
+			0.5, 18, 1000, 80, 30, // MAG
+			0.5, 18, 1000, 70, 40, // DIR
+			2, 40, 70, 20, 3.25, 0, 500); //ROT
 
 	// START OF INSTANTIATIONS
 if(autonomousSelection == DO_NOTHING)
@@ -128,16 +123,9 @@ if(autonomousSelection == DO_NOTHING)
 }
 if(autonomousSelection == MODE_1)
 {
-	command1 = initDriveToWP(defaultProps,48,0,0);
-	command2 = initDriveToWP(defaultProps,0,24,0);
-}
-if(autonomousSelection == FENCE)
-{
-	command3 = initTimeout(500);
-	command4 = initDriveToWP(defaultProps,48,0,0);
-	command5 = initDriveToWP(defaultProps,0,0,90);
-	command6 = initDriveToWP(defaultProps,-18,0,0);
-	command7 = initDriveToWP(defaultProps,80,0,0);
+	command1 = initDriveToWP(defaultProps,24,0,0);
+	command2 = initDriveToWP(defaultProps,0,0,-90);
+	command3 = initDriveToWP(defaultProps,0,-24,0);
 }
 	// END OF INSTANTIATIONS
 
@@ -188,40 +176,10 @@ void autonomousPeriodic()
 
 				autonomousInfo.isFinished = (*command2).isFinished;
 				break;
-
-
-			default:
-				isAuto = 0;
-				break;
-		}
-		break;
-		case(FENCE):
-		switch(autonomousInfo.step)
-		{
-			case(1):
-				timeout(command3);
+			case(3):
+				driveToWP(command3);
 
 				autonomousInfo.isFinished = (*command3).isFinished;
-				break;
-			case(2):
-				driveToWP(command4);
-
-				autonomousInfo.isFinished = (*command4).isFinished;
-				break;
-			case(3):
-				driveToWP(command5);
-
-				autonomousInfo.isFinished = (*command5).isFinished;
-				break;
-			case(4):
-				driveToWP(command6);
-
-				autonomousInfo.isFinished = (*command6).isFinished;
-				break;
-			case(5):
-				driveToWP(command7);
-
-				autonomousInfo.isFinished = (*command7).isFinished;
 				break;
 
 

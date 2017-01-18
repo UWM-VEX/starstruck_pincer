@@ -92,8 +92,8 @@ double clawClose(Claw * claw)
 
 void clawTeleop(Claw * claw)
 {
-	lcdPrint(uart1, 1, "Movement: %d", potGetRawValue(claw->pot) - claw->lastPot);
-	lcdPrint(uart1, 2, "Value: %f", potGetScaledValue(claw->pot));
+	//lcdPrint(uart1, 1, "Movement: %d", potGetRawValue(claw->pot) - claw->lastPot);
+	//lcdPrint(uart1, 2, "Value: %f", potGetScaledValue(claw->pot));
 	if(abs(OIGetClawManual()) > 20)
 	{
 		claw->mode = CLAW_MANUAL;

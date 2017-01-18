@@ -67,8 +67,9 @@ void driveToWP(DriveToWP * step)
 		step->isFirstTime = 0;
 	}
 
-	//lcdPrint(uart1, 1, "FR: %d", encoderGet(step->properties->drive.frontRightEncoder));
-	//lcdPrint(uart1, 2, "RR: %d", encoderGet(step->properties->drive.rearRightEncoder));
+	//lcdPrint(uart1, 1, "FL: %d", encoderGet(step->properties->drive.frontLeftEncoder));
+	//lcdPrint(uart1, 2, "RL: %d", encoderGet(step->properties->drive.rearLeftEncoder));
+	//lcdPrint(uart1, 1, "Gyro: %d", gyroGet(step->properties->drive.gyro));
 
 	double averageMagEncoder = ((double)((encoderGet(step->properties->drive.frontLeftEncoder)
 			- step->firstFrontLeftEncoder) +
@@ -101,6 +102,9 @@ void driveToWP(DriveToWP * step)
 	double directionError = step->direction - directionPV;
 	int rotationError = step->rotation - rotationPV;
 
+	lcdPrint(uart1, 1, "Dir: %f", directionError);
+	lcdPrint(uart1, 2, "Rot: %d", rotationError);
+
 	int inDistanceDB = (absDouble(distanceError) < step->properties->magnitudeDB);
 
 	if(inDistanceDB)
@@ -129,7 +133,7 @@ void driveToWP(DriveToWP * step)
 	// If it has not reached both its distance and rotation targets
 	if( ! (step->reachedDistance && step->reachedDirection && step->reachedRotation))
 	{
-		lcdSetText(uart1, 1, "Case 1");
+		//lcdSetText(uart1, 1, "Case 1");
 
 		if(inDistanceDB)
 		{
@@ -163,7 +167,7 @@ void driveToWP(DriveToWP * step)
 			magnitude = step->properties->magnitudeMaxSpeed;
 		}
 
-		if(inDirectionDB || absDouble(step->direction) < step->properties->directionDB)
+		if(inDirectionDB)// || absDouble(step->direction) < step->properties->directionDB)
 		{
 			//lcdSetText(uart1, 1, "Dir: DB");
 			direction = 0;
@@ -218,7 +222,7 @@ void driveToWP(DriveToWP * step)
 	}
 	else
 	{
-		lcdSetText(uart1, 1, "Case 2");
+		//lcdSetText(uart1, 1, "Case 2");
 
 		// If at some point we've reached a good distance and a good rotation
 		int goodDistance = 0;
@@ -226,12 +230,12 @@ void driveToWP(DriveToWP * step)
 		// Check that we're at a good distance, if we're not, slowly move to a good distance
 		if(absDouble(distanceError) < step->properties->magnitudeDB)
 		{
-			//lcdSetText(uart1, 1, "Mag: Good");
+			lcdSetText(uart1, 1, "Mag: Good");
 			goodDistance = 1;
 		}
 		else
 		{
-			//lcdSetText(uart1, 1, "Mag: Adj");
+			lcdSetText(uart1, 1, "Mag: Adj");
 			magnitude = step->properties->magnitudeMinSpeed;
 		}
 
