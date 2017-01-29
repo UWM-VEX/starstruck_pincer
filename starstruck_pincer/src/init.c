@@ -174,7 +174,7 @@ void initialize() {
 						encoderInit(5, 6, 1), encoderInit(7,8,1), gyroInit(1, 0));
 	robotDumper = initDumper(initPantherMotor(4, 1), initPantherMotor(5, 0),
 			initPantherMotor(8, 0), initPantherMotor(9, 1),
-			initPot(2, 920, 4095), 900, 0, 0, 0, .20, 0.95, 0.67, 0.60);
+			initPot(2, 4000, 1116), 500, 0, 0, 0, .20, 0.95, 0.67, 0.60);
 	robotClaw = initClaw(initPantherMotor(1,0), initPantherMotor(10,0), initPot(3,4095,1085), 0.4, 0);
 
 	lcdModeSelect();
