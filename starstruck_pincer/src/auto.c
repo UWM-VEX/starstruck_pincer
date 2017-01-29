@@ -99,8 +99,22 @@ DriveToWPProperties * defaultProps;
 // START OF DECLARATIONS
 
 DriveToWP * command1;
-DriveToWP * command2;
-DriveToWP * command3;
+AutoClaw * command2;
+Timeout * command3;
+
+AutoDumper * command4;
+AutoClaw * command5;
+
+DriveToWP * command6;
+AutoClaw * command7;
+
+DriveToWP * command8;
+AutoClaw * command9;
+
+AutoDumper * command10;
+AutoClaw * command11;
+
+AutoClaw * command12;
 
 // END OF DECLARATIONS
 
@@ -124,8 +138,22 @@ if(autonomousSelection == DO_NOTHING)
 if(autonomousSelection == MODE_1)
 {
 	command1 = initDriveToWP(defaultProps,24,0,0);
-	command2 = initDriveToWP(defaultProps,0,0,-90);
-	command3 = initDriveToWP(defaultProps,0,-24,0);
+	command2 = initAutoClaw(robotClaw,CLAW_CLOSE);
+	command3 = initTimeout(2000);
+
+	command4 = initAutoDumper(robotDumper,DUMPER_TRAVEL);
+	command5 = initAutoClaw(robotClaw,CLAW_CLOSE);
+
+	command6 = initDriveToWP(defaultProps,0,0,-90);
+	command7 = initAutoClaw(robotClaw,CLAW_CLOSE);
+
+	command8 = initDriveToWP(defaultProps,0,-24,0);
+	command9 = initAutoClaw(robotClaw,CLAW_CLOSE);
+
+	command10 = initAutoDumper(robotDumper, DUMPER_HIGH);
+	command11 = initAutoClaw(robotClaw,CLAW_CLOSE);
+
+	command12 = initAutoClaw(robotClaw,CLAW_OPEN);
 }
 	// END OF INSTANTIATIONS
 
@@ -172,14 +200,34 @@ void autonomousPeriodic()
 				autonomousInfo.isFinished = (*command1).isFinished;
 				break;
 			case(2):
-				driveToWP(command2);
-
-				autonomousInfo.isFinished = (*command2).isFinished;
+				autoClaw(command2);
+				timeout(command3);
+				autonomousInfo.isFinished = (*command2).isFinished && (*command3).isFinished;
 				break;
 			case(3):
-				driveToWP(command3);
+				autoDumper(command4);
+				autoClaw(command5);
+				autonomousInfo.isFinished = (*command4).isFinished && (*command5).isFinished;
+				break;
+			case(4):
+				driveToWP(command6);
+				autoClaw(command7);
+				autonomousInfo.isFinished = (*command6).isFinished && (*command7).isFinished;
+				break;
+			case(5):
+				driveToWP(command8);
+				autoClaw(command9);
+				autonomousInfo.isFinished = (*command8).isFinished && (*command9).isFinished;
+				break;
+			case(6):
+				autoDumper(command10);
+				autoClaw(command11);
+				autonomousInfo.isFinished = (*command10).isFinished && (*command11).isFinished;
+				break;
+			case(7):
+				autoClaw(command12);
 
-				autonomousInfo.isFinished = (*command3).isFinished;
+				autonomousInfo.isFinished = (*command12).isFinished;
 				break;
 
 

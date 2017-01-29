@@ -73,7 +73,7 @@ int OIGetDumperHang()
 
 int OIGetClawManual()
 {
-	return joystickGetAnalog(2,1);
+	return joystickGetAnalog(2,4);
 }
 
 int OIGetClawOpen()

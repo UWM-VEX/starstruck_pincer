@@ -13,6 +13,7 @@
 #define CLAW_OPEN 0
 #define CLAW_CLOSE 1
 #define CLAW_STOP 2
+#define CLAW_FIRST_OPEN 3
 
 struct Claw{
 
@@ -32,6 +33,7 @@ void runClawAtSpeed(Claw * claw, int speed);
 double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNegError);
 int clawGetMode(Claw * claw);
 double clawOpen(Claw * claw);
+double clawFirstOpen(Claw * claw);
 double clawClose(Claw * claw);
 void clawTeleop(Claw * claw);
 

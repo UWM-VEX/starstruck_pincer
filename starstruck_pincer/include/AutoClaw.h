@@ -18,6 +18,7 @@ struct AutoClaw{
 
 }typedef AutoClaw;
 
-
+AutoClaw * initAutoClaw(Claw * claw, int type);
+void autoClaw(AutoClaw * step);
 
 #endif /* INCLUDE_AUTOCLAW_H_ */

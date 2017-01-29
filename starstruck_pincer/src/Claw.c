@@ -27,6 +27,15 @@ void runClawAtSpeed(Claw * claw, int speed)
 {
 	claw->lastPot = potGetRawValue(claw->pot);
 
+	if(potGetScaledValue(claw->pot) < 0)
+	{
+		speed = limit(speed, 127, 0);
+	}
+	else if(potGetScaledValue(claw->pot) > 0.9)
+	{
+		speed = limit(speed, 0, -127);
+	}
+
 	setPantherMotor(claw->motor1, speed);
 	setPantherMotor(claw->motor2, -speed);
 }
@@ -52,10 +61,10 @@ double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNe
 		else
 		{
 			runClawAtSpeed(claw, 50);
-			return 1;
+			return 0;
 		}
 	}
-	else if(correctNegError)
+	else if(error < 0 && correctNegError)
 	{
 		if(abs(movement) > 15)
 		{
@@ -83,6 +92,11 @@ int clawGetMode(Claw * claw)
 double clawOpen(Claw * claw)
 {
 	return clawToPosition(claw, claw->open, 1, 0);
+}
+
+double clawFirstOpen(Claw * claw)
+{
+	return clawToPosition(claw, claw->open, 1, 1);
 }
 
 double clawClose(Claw * claw)

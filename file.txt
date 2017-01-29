@@ -5,6 +5,25 @@ Mode DO_NOTHING
 EndMode
 Mode MODE_1
 driveToWP (defaultProps,24,0,0)
-driveToWP(defaultProps,0,0,-90)
-driveToWP(defaultProps,0,-24,0)
+{
+autoClaw(robotClaw,CLAW_CLOSE) &&
+timeout(2000)
+}
+{
+autoDumper(robotDumper,DUMPER_TRAVEL) &&
+autoClaw(robotClaw,CLAW_CLOSE)
+}
+{
+driveToWP(defaultProps,0,0,-90) &&
+autoClaw(robotClaw,CLAW_CLOSE)
+}
+{
+driveToWP(defaultProps,0,-24,0) &&
+autoClaw(robotClaw,CLAW_CLOSE)
+}
+{
+autoDumper(robotDumper, DUMPER_HIGH) &&
+autoClaw(robotClaw,CLAW_CLOSE)
+}
+autoClaw(robotClaw,CLAW_OPEN)
 EndMode
