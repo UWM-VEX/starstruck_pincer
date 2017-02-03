@@ -97,24 +97,30 @@ int globalTimeout;
 DriveToWPProperties * defaultProps;
 
 // START OF DECLARATIONS
-
 DriveToWP * command1;
 AutoClaw * command2;
-Timeout * command3;
+DriveToWP * command3;
+Timeout * command4;
 
-AutoDumper * command4;
-AutoClaw * command5;
 
-DriveToWP * command6;
-AutoClaw * command7;
 
-DriveToWP * command8;
+DriveToWP * command5;
+AutoClaw * command6;
+Timeout * command7;
+
+AutoDumper * command8;
 AutoClaw * command9;
 
-AutoDumper * command10;
+DriveToWP * command10;
 AutoClaw * command11;
 
-AutoClaw * command12;
+DriveToWP * command12;
+AutoClaw * command13;
+
+AutoDumper * command14;
+AutoClaw * command15;
+
+AutoClaw * command16;
 
 // END OF DECLARATIONS
 
@@ -132,28 +138,36 @@ void autonomousInit()
 			2, 40, 70, 20, 3.25, 0, 500); //ROT
 
 	// START OF INSTANTIATIONS
+if(autonomousSelection == MY_MODE)
+{
+	command1 = initDriveToWP(defaultProps,24,0,0);
+	command2 = initAutoClaw(robotClaw, CLAW_CLOSE);
+	command3 = initDriveToWP(defaultProps,0,24,0);
+	command4 = initTimeout(2000);
+
+}
 if(autonomousSelection == DO_NOTHING)
 {
 }
 if(autonomousSelection == MODE_1)
 {
-	command1 = initDriveToWP(defaultProps,24,0,0);
-	command2 = initAutoClaw(robotClaw,CLAW_CLOSE);
-	command3 = initTimeout(2000);
+	command5 = initDriveToWP(defaultProps,24,0,0);
+	command6 = initAutoClaw(robotClaw,CLAW_CLOSE);
+	command7 = initTimeout(2000);
 
-	command4 = initAutoDumper(robotDumper,DUMPER_TRAVEL);
-	command5 = initAutoClaw(robotClaw,CLAW_CLOSE);
-
-	command6 = initDriveToWP(defaultProps,0,0,-90);
-	command7 = initAutoClaw(robotClaw,CLAW_CLOSE);
-
-	command8 = initDriveToWP(defaultProps,0,-24,0);
+	command8 = initAutoDumper(robotDumper,DUMPER_TRAVEL);
 	command9 = initAutoClaw(robotClaw,CLAW_CLOSE);
 
-	command10 = initAutoDumper(robotDumper, DUMPER_HIGH);
+	command10 = initDriveToWP(defaultProps,0,0,-90);
 	command11 = initAutoClaw(robotClaw,CLAW_CLOSE);
 
-	command12 = initAutoClaw(robotClaw,CLAW_OPEN);
+	command12 = initDriveToWP(defaultProps,0,-24,0);
+	command13 = initAutoClaw(robotClaw,CLAW_CLOSE);
+
+	command14 = initAutoDumper(robotDumper, DUMPER_HIGH);
+	command15 = initAutoClaw(robotClaw,CLAW_CLOSE);
+
+	command16 = initAutoClaw(robotClaw,CLAW_OPEN);
 }
 	// END OF INSTANTIATIONS
 
@@ -181,6 +195,31 @@ void autonomousPeriodic()
 	switch(autonomousSelection)
 	{
 	// START OF EXECUTIONS
+		case(MY_MODE):
+		switch(autonomousInfo.step)
+		{
+			case(1):
+				driveToWP(command1);
+
+				autonomousInfo.isFinished = (*command1).isFinished;
+				break;
+			case(2):
+				autoClaw(command2);
+
+				autonomousInfo.isFinished = (*command2).isFinished;
+				break;
+			case(3):
+				driveToWP(command3);
+				timeout(command4);
+				autonomousInfo.isFinished = (*command3).isFinished && (*command4).isFinished;
+				break;
+
+
+			default:
+				isAuto = 0;
+				break;
+		}
+		break;
 		case(DO_NOTHING):
 		switch(autonomousInfo.step)
 		{
@@ -195,39 +234,39 @@ void autonomousPeriodic()
 		switch(autonomousInfo.step)
 		{
 			case(1):
-				driveToWP(command1);
+				driveToWP(command5);
 
-				autonomousInfo.isFinished = (*command1).isFinished;
+				autonomousInfo.isFinished = (*command5).isFinished;
 				break;
 			case(2):
-				autoClaw(command2);
-				timeout(command3);
-				autonomousInfo.isFinished = (*command2).isFinished && (*command3).isFinished;
-				break;
-			case(3):
-				autoDumper(command4);
-				autoClaw(command5);
-				autonomousInfo.isFinished = (*command4).isFinished && (*command5).isFinished;
-				break;
-			case(4):
-				driveToWP(command6);
-				autoClaw(command7);
+				autoClaw(command6);
+				timeout(command7);
 				autonomousInfo.isFinished = (*command6).isFinished && (*command7).isFinished;
 				break;
-			case(5):
-				driveToWP(command8);
+			case(3):
+				autoDumper(command8);
 				autoClaw(command9);
 				autonomousInfo.isFinished = (*command8).isFinished && (*command9).isFinished;
 				break;
-			case(6):
-				autoDumper(command10);
+			case(4):
+				driveToWP(command10);
 				autoClaw(command11);
 				autonomousInfo.isFinished = (*command10).isFinished && (*command11).isFinished;
 				break;
+			case(5):
+				driveToWP(command12);
+				autoClaw(command13);
+				autonomousInfo.isFinished = (*command12).isFinished && (*command13).isFinished;
+				break;
+			case(6):
+				autoDumper(command14);
+				autoClaw(command15);
+				autonomousInfo.isFinished = (*command14).isFinished && (*command15).isFinished;
+				break;
 			case(7):
-				autoClaw(command12);
+				autoClaw(command16);
 
-				autonomousInfo.isFinished = (*command12).isFinished;
+				autonomousInfo.isFinished = (*command16).isFinished;
 				break;
 
 

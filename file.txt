@@ -1,6 +1,14 @@
 ##
-Catapult
+Pincer
 ##
+Mode MY_MODE
+	driveToWP(defaultProps,24,0,0)
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(default,0,24,0) &&
+		timeout(2000)
+	}
+EndMode
 Mode DO_NOTHING
 EndMode
 Mode MODE_1
