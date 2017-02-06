@@ -29,6 +29,9 @@ void holonomicDrive(Drive drive, int magnitude, int direction, int rotation)
 	rearLeft = limit(rearLeft, 127, -127);
 	rearRight = limit(rearRight, 127, -127);
 
+	frontLeft = (int) (frontLeft * 0.87);
+	rearRight = (int) (rearRight * 0.87);
+
 	setPantherMotor(drive.frontLeftMotor, frontLeft);
 	setPantherMotor(drive.rearLeftMotor, frontRight);
 	setPantherMotor(drive.frontRightMotor, rearLeft);

@@ -107,12 +107,22 @@ void driveToWP(DriveToWP * step)
 
 	int inDistanceDB = (absDouble(distanceError) < step->properties->magnitudeDB);
 
+	/*if(absDouble(step->distance) < 0.5 && abs(step->rotation) == 0)
+	{
+		inDistanceDB = 1;
+	}*/
+
 	if(inDistanceDB)
 	{
 		step->reachedDistance = 1;
 	}
 
 	int inDirectionDB = (absDouble(directionError) < step->properties->directionDB);
+
+	if(absDouble(step->direction) < 0.5)
+	{
+		inDirectionDB = 1;
+	}
 
 	if(inDirectionDB)
 	{

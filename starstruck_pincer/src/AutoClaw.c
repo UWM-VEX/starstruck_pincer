@@ -28,6 +28,10 @@ void autoClaw(AutoClaw * step)
 	{
 		step->isFinished = clawClose(step->claw);
 	}
+	else if(step->type == CLAW_FIRST_OPEN)
+	{
+		step->isFinished = clawFirstOpen(step->claw);
+	}
 	else
 	{
 		runClawAtSpeed(step->claw, 0);

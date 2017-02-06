@@ -46,7 +46,7 @@ double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNe
 	int movement = potGetRawValue(claw->pot) - claw->lastPot;
 	double error = sp - pv;
 
-	if(absDouble(error) < 0.02)
+	if(absDouble(error) < 0.04)
 	{
 		runClawAtSpeed(claw, 0);
 		return 1;
@@ -61,7 +61,7 @@ double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNe
 		else
 		{
 			runClawAtSpeed(claw, 50);
-			return 0;
+			return 2;
 		}
 	}
 	else if(error < 0 && correctNegError)
@@ -74,7 +74,7 @@ double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNe
 		else
 		{
 			runClawAtSpeed(claw, -50);
-			return 1;
+			return 2;
 		}
 	}
 	else
@@ -91,17 +91,20 @@ int clawGetMode(Claw * claw)
 
 double clawOpen(Claw * claw)
 {
-	return clawToPosition(claw, claw->open, 1, 0);
+	int result = clawToPosition(claw, claw->open, 1, 0);
+	return result == 1;
 }
 
 double clawFirstOpen(Claw * claw)
 {
-	return clawToPosition(claw, claw->open, 1, 1);
+	int result = clawToPosition(claw, claw->open, 1, 1);
+	return result == 1;
 }
 
 double clawClose(Claw * claw)
 {
-	return clawToPosition(claw, claw->close, 0, 1);
+	int result = clawToPosition(claw, claw->close, 0, 1);
+	return result == 1 || result == 2;
 }
 
 void clawTeleop(Claw * claw)
@@ -109,7 +112,7 @@ void clawTeleop(Claw * claw)
 	//lcdPrint(uart1, 1, "Movement: %d", potGetRawValue(claw->pot) - claw->lastPot);
 	lcdPrint(uart1, 2, "Scaled: %f", potGetScaledValue(claw->pot));
 	lcdPrint(uart1, 1, "Raw: %d", potGetRawValue(claw->pot));
-	if(abs(OIGetClawManual()) > 20)
+	if(abs(OIGetClawManual()) > 50)
 	{
 		claw->mode = CLAW_MANUAL;
 		//lcdSetText(uart1, 2, "Manual");
