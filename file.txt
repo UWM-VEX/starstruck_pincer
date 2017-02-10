@@ -14,7 +14,7 @@ Mode MODE_1
 	driveToWP(defaultProps,0,0,-20)
 	driveToWP(defaultProps,36,0,0)
 	autoClaw(robotClaw, CLAW_CLOSE)
-	driveToWP(defaultProps,0,-24,0)
+	driveToWP(defaultProps,0,-20,0)
 EndMode
 Mode CUBE_FIRST
 	{

@@ -201,7 +201,7 @@ if(autonomousSelection == MODE_1)
 	command6 = initDriveToWP(defaultProps,0,0,-20);
 	command7 = initDriveToWP(defaultProps,36,0,0);
 	command8 = initAutoClaw(robotClaw, CLAW_CLOSE);
-	command9 = initDriveToWP(defaultProps,0,-24,0);
+	command9 = initDriveToWP(defaultProps,0,-20,0);
 }
 if(autonomousSelection == CUBE_FIRST)
 {
