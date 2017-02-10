@@ -67,8 +67,8 @@ int OIGetDumperHigh()
 
 int OIGetDumperFrontFence()
 {
-	return joystickGetDigital(2, 8, JOY_RIGHT) ||
-			joystickGetDigital(1, 8, JOY_RIGHT);
+	return joystickGetDigital(2, 8, JOY_UP) ||
+			joystickGetDigital(1, 8, JOY_UP);
 }
 
 int OIGetClawManual()
@@ -92,4 +92,15 @@ int OIGetDumperOverride()
 {
 	return (joystickGetDigital(1, 5, JOY_DOWN && joystickGetDigital(1, 6, JOY_DOWN)) ||
 			(joystickGetDigital(2, 5, JOY_DOWN) && joystickGetDigital(2, 6, JOY_DOWN)));
+}
+
+int OIGetFenceMiddle()
+{
+	return joystickGetDigital(2, 8, JOY_DOWN);
+}
+
+int OIGetFenceSide()
+{
+	return joystickGetDigital(2, 8, JOY_LEFT) ||
+			joystickGetDigital(2, 8, JOY_RIGHT);
 }

@@ -24,5 +24,7 @@ int OIGetClawManual();
 int OIGetClawOpen();
 int OIGetClawClose();
 int OIGetDumperOverride();
+int OIGetFenceMiddle();
+int OIGetFenceSide();
 
 #endif /* INCLUDE_OI_H_ */

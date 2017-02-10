@@ -136,6 +136,10 @@ void clawTeleop(Claw * claw)
 			claw->mode = CLAW_AUTO;
 			claw->autoState = CLAW_CLOSE;
 		}
+		else if(OIGetFenceSide() || OIGetFenceMiddle())
+		{
+			claw->mode = CLAW_AUTO;
+		}
 	}
 
 	if(claw->mode == CLAW_MANUAL)

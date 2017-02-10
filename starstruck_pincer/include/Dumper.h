@@ -16,6 +16,7 @@
 #define DUMPER_HIGH 2
 #define DUMPER_FRONT_FENCE 3
 #define DUMPER_MIDDLE_FENCE 4
+#define DUMPER_SIDE_FENCE 5
 
 struct Dumper {
 	PantherMotor topLeft;
@@ -32,12 +33,13 @@ struct Dumper {
 	double highHeight;
 	double frontFenceHeight;
 	double middleFenceHeight;
+	double sideFenceHeight;
 }typedef Dumper;
 
 Dumper * initDumper(PantherMotor topLeft, PantherMotor bottomLeft, PantherMotor topRight,
 		PantherMotor bottomRight, Pot * pot, double kP, double kI, double kD,
 		double lowHeight, double travelHeight, double highHeight, double hangHeight,
-		double autoHeight);
+		double autoHeight, double sideFenceHeight);
 void runDumperAtSpeed(Dumper * shovel, int speed);
 int dumperToHeight(Dumper *dumper, double height);
 void updateDumperPID(Dumper * dumper);
