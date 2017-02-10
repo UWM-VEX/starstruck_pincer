@@ -35,8 +35,11 @@ int alliance;
 #define DO_NOTHING 0
 #define MODE_1 1
 #define CUBE_FIRST 2
-#define FENCE_FIRST 3
-#define TEST_AUTO 4
+#define FENCE_1ST_L_1 3
+#define FENCE_1ST_L_2 4
+#define FENCE_1ST_R_1 5
+#define FENCE_1ST_R_2 6
+#define TEST_AUTO 7
 // END OF MODES
 
 int autonomousSelection;
