@@ -89,22 +89,28 @@ int clawGetMode(Claw * claw)
 	return claw->mode;
 }
 
-double clawOpen(Claw * claw)
+int clawOpen(Claw * claw)
 {
 	int result = clawToPosition(claw, claw->open, 1, 0);
 	return result == 1;
 }
 
-double clawFirstOpen(Claw * claw)
+int clawFirstOpen(Claw * claw)
 {
 	int result = clawToPosition(claw, claw->open, 1, 1);
 	return result == 1;
 }
 
-double clawClose(Claw * claw)
+int clawClose(Claw * claw)
 {
 	int result = clawToPosition(claw, claw->close, 0, 1);
 	return result == 1 || result == 2;
+}
+
+int clawFullOpen(Claw * claw)
+{
+	int result = clawToPosition(claw, 0.5, 1, 1);
+	return result == 1;
 }
 
 void clawTeleop(Claw * claw)

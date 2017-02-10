@@ -2,6 +2,9 @@
 Pincer
 ##
 Mode DO_NOTHING
+	##
+	autoDumper(robotDumper,DUMPER_FRONT_FENCE)
+	##
 EndMode
 Mode MODE_1
 	driveToWP(defaultProps, 12, 0, 0)
@@ -88,6 +91,59 @@ Mode CUBE_FIRST
 		autoClaw(robotClaw, CLAW_STOP) &&
 		timeout(1000)
 	}
+EndMode
+Mode FENCE_FIRST
+	autoClaw(robotClaw, CLAW_FULL_OPEN) 
+	{
+		driveToWP(defaultProps,24,-12,0) ||
+		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
+	}
+	{
+		driveToWP(defaultProps,36,0,0) ||
+		timeout(2500)
+	}
+	driveToWP(defaultProps,-24,0,0)
+	driveToWP(defaultProps,0,0,90) 
+	autoDumper(robotDumper, DUMPER_LOW)
+	autoClaw(robotClaw, CLAW_OPEN)
+	autoClaw(robotClaw, CLAW_STOP)
+	{
+		driveToWP(defaultProps,30,0,0) ||
+		timeout(5000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	timeout(2000)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps,8,0,0)||
+		timeout(2500)
+	}
+	driveToWP(defaultProps,0,0,80)
+	{
+		driveToWP(defaultProps,-34,0,0) ||
+		timeout(2500)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	autoClaw(robotClaw, CLAW_OPEN)
+	timeout(2500)	
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	timeout(2500)
+	autoClaw(robotClaw,CLAW_OPEN)
+	autoClaw(robotClaw,CLAW_STOP)
+	timeout(1000)
+	driveToWP(defaultProps,20,0,0)
+	autoClaw(robotClaw, CLAW_FULL_OPEN)
+	autoDumper(robotDumper, DUMPER_MIDDLE_FENCE)
+	{	
+		driveToWP(defaultProps,-30,0,0) ||
+		timeout(2500)
+	}
+	{
+		driveToWP(defaultProps,24,0,0)||
+		timeout(2500)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+	autoClaw(robotClaw, CLAW_OPEN)
 EndMode
 Mode TEST_AUTO
 	autoClaw(robotClaw, CLAW_FIRST_OPEN)

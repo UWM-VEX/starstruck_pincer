@@ -36,11 +36,11 @@ void autoDumper(AutoDumper * step)
 	case(DUMPER_HIGH):
 		step->isFinished = dumperToHeight(step->dumper, step->dumper->highHeight) == 0;
 		break;
-	case(DUMPER_HANG):
-		step->isFinished = dumperToHeight(step->dumper, step->dumper->hangHeight) == 0;
+	case(DUMPER_FRONT_FENCE):
+		step->isFinished = dumperToHeight(step->dumper, step->dumper->frontFenceHeight) == 0;
 		break;
-	case(DUMPER_AUTO_HEIGHT):
-			step->isFinished = dumperToHeight(step->dumper, step->dumper->autoHeight) == 0;
+	case(DUMPER_MIDDLE_FENCE):
+			step->isFinished = dumperToHeight(step->dumper, step->dumper->middleFenceHeight) == 0;
 			break;
 	default:
 		runDumperAtSpeed(step->dumper, 0);

@@ -65,7 +65,7 @@ int OIGetDumperHigh()
 			joystickGetDigital(1, 7, JOY_UP);
 }
 
-int OIGetDumperHang()
+int OIGetDumperFrontFence()
 {
 	return joystickGetDigital(2, 8, JOY_RIGHT) ||
 			joystickGetDigital(1, 8, JOY_RIGHT);

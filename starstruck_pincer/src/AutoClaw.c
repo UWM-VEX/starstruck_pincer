@@ -32,6 +32,10 @@ void autoClaw(AutoClaw * step)
 	{
 		step->isFinished = clawFirstOpen(step->claw);
 	}
+	else if(step->type == CLAW_FULL_OPEN)
+	{
+		step->isFinished = clawFullOpen(step->claw);
+	}
 	else
 	{
 		runClawAtSpeed(step->claw, 0);

@@ -53,7 +53,7 @@ void lcdModeSelect()
 	int newButtonPressed;
 	int lastStep = 0;
 
-	const char * selectionText[] = {"DO_NOTHING", "MODE_1", "CUBE_FIRST", "TEST_AUTO"}; // MODE DEFINITIONS
+	const char * selectionText[] = {"DO_NOTHING", "MODE_1", "CUBE_FIRST", "FENCE_FIRST", "TEST_AUTO"}; // MODE DEFINITIONS
 	int size = sizeof(selectionText) / sizeof(int);
 
 	autonomousSelection = 0;
@@ -174,7 +174,7 @@ void initialize() {
 						encoderInit(5, 6, 1), encoderInit(7,8,1), gyroInit(1, 0));
 	robotDumper = initDumper(initPantherMotor(4, 1), initPantherMotor(5, 0),
 			initPantherMotor(8, 0), initPantherMotor(9, 1),
-			initPot(5, 3300, 8), 500, 0, 0, 0, .45, 0.75, 0.67, 0.92);
+			initPot(5, 3300, 8), 700, 0, 0, 0, .45, 0.65, 0.33, 0.8);
 	robotClaw = initClaw(initPantherMotor(1,1), initPantherMotor(10,1), initPot(3,3980,1010), 0.2, 0);
 
 	lcdModeSelect();

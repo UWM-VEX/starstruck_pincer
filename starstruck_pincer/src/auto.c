@@ -168,8 +168,53 @@ Timeout * command52;
 
 
 AutoClaw * command53;
-AutoClaw * command54;
-DriveToWP * command55;
+DriveToWP * command54;
+AutoDumper * command55;
+
+DriveToWP * command56;
+Timeout * command57;
+
+DriveToWP * command58;
+DriveToWP * command59;
+AutoDumper * command60;
+AutoClaw * command61;
+AutoClaw * command62;
+DriveToWP * command63;
+Timeout * command64;
+
+AutoClaw * command65;
+Timeout * command66;
+AutoDumper * command67;
+DriveToWP * command68;
+Timeout * command69;
+
+DriveToWP * command70;
+DriveToWP * command71;
+Timeout * command72;
+
+AutoDumper * command73;
+AutoClaw * command74;
+Timeout * command75;
+AutoDumper * command76;
+Timeout * command77;
+AutoClaw * command78;
+AutoClaw * command79;
+Timeout * command80;
+DriveToWP * command81;
+AutoClaw * command82;
+AutoDumper * command83;
+DriveToWP * command84;
+Timeout * command85;
+
+DriveToWP * command86;
+Timeout * command87;
+
+AutoDumper * command88;
+AutoClaw * command89;
+
+AutoClaw * command90;
+AutoClaw * command91;
+DriveToWP * command92;
 
 // END OF DECLARATIONS
 
@@ -263,11 +308,58 @@ if(autonomousSelection == CUBE_FIRST)
 	command52 = initTimeout(1000);
 
 }
+if(autonomousSelection == FENCE_FIRST)
+{
+	command53 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
+	command54 = initDriveToWP(defaultProps,24,-12,0);
+	command55 = initAutoDumper(robotDumper, DUMPER_FRONT_FENCE);
+
+	command56 = initDriveToWP(defaultProps,36,0,0);
+	command57 = initTimeout(2500);
+
+	command58 = initDriveToWP(defaultProps,-24,0,0);
+	command59 = initDriveToWP(defaultProps,0,0,90);
+	command60 = initAutoDumper(robotDumper, DUMPER_LOW);
+	command61 = initAutoClaw(robotClaw, CLAW_OPEN);
+	command62 = initAutoClaw(robotClaw, CLAW_STOP);
+	command63 = initDriveToWP(defaultProps,30,0,0);
+	command64 = initTimeout(5000);
+
+	command65 = initAutoClaw(robotClaw, CLAW_CLOSE);
+	command66 = initTimeout(2000);
+	command67 = initAutoDumper(robotDumper, DUMPER_TRAVEL);
+	command68 = initDriveToWP(defaultProps,8,0,0);
+	command69 = initTimeout(2500);
+
+	command70 = initDriveToWP(defaultProps,0,0,80);
+	command71 = initDriveToWP(defaultProps,-34,0,0);
+	command72 = initTimeout(2500);
+
+	command73 = initAutoDumper(robotDumper, DUMPER_HIGH);
+	command74 = initAutoClaw(robotClaw, CLAW_OPEN);
+	command75 = initTimeout(2500);
+	command76 = initAutoDumper(robotDumper, DUMPER_TRAVEL);
+	command77 = initTimeout(2500);
+	command78 = initAutoClaw(robotClaw,CLAW_OPEN);
+	command79 = initAutoClaw(robotClaw,CLAW_STOP);
+	command80 = initTimeout(1000);
+	command81 = initDriveToWP(defaultProps,20,0,0);
+	command82 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
+	command83 = initAutoDumper(robotDumper, DUMPER_MIDDLE_FENCE);
+	command84 = initDriveToWP(defaultProps,-30,0,0);
+	command85 = initTimeout(2500);
+
+	command86 = initDriveToWP(defaultProps,24,0,0);
+	command87 = initTimeout(2500);
+
+	command88 = initAutoDumper(robotDumper, DUMPER_LOW);
+	command89 = initAutoClaw(robotClaw, CLAW_OPEN);
+}
 if(autonomousSelection == TEST_AUTO)
 {
-	command53 = initAutoClaw(robotClaw, CLAW_FIRST_OPEN);
-	command54 = initAutoClaw(robotClaw, CLAW_STOP);
-	command55 = initDriveToWP(defaultProps, 24, 0, 0);
+	command90 = initAutoClaw(robotClaw, CLAW_FIRST_OPEN);
+	command91 = initAutoClaw(robotClaw, CLAW_STOP);
+	command92 = initDriveToWP(defaultProps, 24, 0, 0);
 }
 	// END OF INSTANTIATIONS
 
@@ -510,7 +602,7 @@ void autonomousPeriodic()
 				break;
 		}
 		break;
-		case(TEST_AUTO):
+		case(FENCE_FIRST):
 		switch(autonomousInfo.step)
 		{
 			case(1):
@@ -519,14 +611,174 @@ void autonomousPeriodic()
 				autonomousInfo.isFinished = (*command53).isFinished;
 				break;
 			case(2):
-				autoClaw(command54);
-
-				autonomousInfo.isFinished = (*command54).isFinished;
+				driveToWP(command54);
+				autoDumper(command55);
+				autonomousInfo.isFinished = (*command54).isFinished || (*command55).isFinished;
 				break;
 			case(3):
-				driveToWP(command55);
+				driveToWP(command56);
+				timeout(command57);
+				autonomousInfo.isFinished = (*command56).isFinished || (*command57).isFinished;
+				break;
+			case(4):
+				driveToWP(command58);
 
-				autonomousInfo.isFinished = (*command55).isFinished;
+				autonomousInfo.isFinished = (*command58).isFinished;
+				break;
+			case(5):
+				driveToWP(command59);
+
+				autonomousInfo.isFinished = (*command59).isFinished;
+				break;
+			case(6):
+				autoDumper(command60);
+
+				autonomousInfo.isFinished = (*command60).isFinished;
+				break;
+			case(7):
+				autoClaw(command61);
+
+				autonomousInfo.isFinished = (*command61).isFinished;
+				break;
+			case(8):
+				autoClaw(command62);
+
+				autonomousInfo.isFinished = (*command62).isFinished;
+				break;
+			case(9):
+				driveToWP(command63);
+				timeout(command64);
+				autonomousInfo.isFinished = (*command63).isFinished || (*command64).isFinished;
+				break;
+			case(10):
+				autoClaw(command65);
+
+				autonomousInfo.isFinished = (*command65).isFinished;
+				break;
+			case(11):
+				timeout(command66);
+
+				autonomousInfo.isFinished = (*command66).isFinished;
+				break;
+			case(12):
+				autoDumper(command67);
+
+				autonomousInfo.isFinished = (*command67).isFinished;
+				break;
+			case(13):
+				driveToWP(command68);
+				timeout(command69);
+				autonomousInfo.isFinished = (*command68).isFinished || (*command69).isFinished;
+				break;
+			case(14):
+				driveToWP(command70);
+
+				autonomousInfo.isFinished = (*command70).isFinished;
+				break;
+			case(15):
+				driveToWP(command71);
+				timeout(command72);
+				autonomousInfo.isFinished = (*command71).isFinished || (*command72).isFinished;
+				break;
+			case(16):
+				autoDumper(command73);
+
+				autonomousInfo.isFinished = (*command73).isFinished;
+				break;
+			case(17):
+				autoClaw(command74);
+
+				autonomousInfo.isFinished = (*command74).isFinished;
+				break;
+			case(18):
+				timeout(command75);
+
+				autonomousInfo.isFinished = (*command75).isFinished;
+				break;
+			case(19):
+				autoDumper(command76);
+
+				autonomousInfo.isFinished = (*command76).isFinished;
+				break;
+			case(20):
+				timeout(command77);
+
+				autonomousInfo.isFinished = (*command77).isFinished;
+				break;
+			case(21):
+				autoClaw(command78);
+
+				autonomousInfo.isFinished = (*command78).isFinished;
+				break;
+			case(22):
+				autoClaw(command79);
+
+				autonomousInfo.isFinished = (*command79).isFinished;
+				break;
+			case(23):
+				timeout(command80);
+
+				autonomousInfo.isFinished = (*command80).isFinished;
+				break;
+			case(24):
+				driveToWP(command81);
+
+				autonomousInfo.isFinished = (*command81).isFinished;
+				break;
+			case(25):
+				autoClaw(command82);
+
+				autonomousInfo.isFinished = (*command82).isFinished;
+				break;
+			case(26):
+				autoDumper(command83);
+
+				autonomousInfo.isFinished = (*command83).isFinished;
+				break;
+			case(27):
+				driveToWP(command84);
+				timeout(command85);
+				autonomousInfo.isFinished = (*command84).isFinished || (*command85).isFinished;
+				break;
+			case(28):
+				driveToWP(command86);
+				timeout(command87);
+				autonomousInfo.isFinished = (*command86).isFinished || (*command87).isFinished;
+				break;
+			case(29):
+				autoDumper(command88);
+
+				autonomousInfo.isFinished = (*command88).isFinished;
+				break;
+			case(30):
+				autoClaw(command89);
+
+				autonomousInfo.isFinished = (*command89).isFinished;
+				break;
+
+
+			default:
+				isAuto = 0;
+				break;
+		}
+		break;
+		case(TEST_AUTO):
+		switch(autonomousInfo.step)
+		{
+			case(1):
+				autoClaw(command90);
+
+				autonomousInfo.isFinished = (*command90).isFinished;
+				break;
+			case(2):
+				autoClaw(command91);
+
+				autonomousInfo.isFinished = (*command91).isFinished;
+				break;
+			case(3):
+				driveToWP(command92);
+
+				autonomousInfo.isFinished = (*command92).isFinished;
 				break;
 
 

@@ -14,8 +14,8 @@
 #define DUMPER_LOW 0
 #define DUMPER_TRAVEL 1
 #define DUMPER_HIGH 2
-#define DUMPER_HANG 3
-#define DUMPER_AUTO_HEIGHT 4
+#define DUMPER_FRONT_FENCE 3
+#define DUMPER_MIDDLE_FENCE 4
 
 struct Dumper {
 	PantherMotor topLeft;
@@ -30,8 +30,8 @@ struct Dumper {
 	double lowHeight;
 	double travelHeight;
 	double highHeight;
-	double hangHeight;
-	double autoHeight;
+	double frontFenceHeight;
+	double middleFenceHeight;
 }typedef Dumper;
 
 Dumper * initDumper(PantherMotor topLeft, PantherMotor bottomLeft, PantherMotor topRight,

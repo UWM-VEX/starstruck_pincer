@@ -19,7 +19,7 @@ int OIGetDumper();
 int OIGetDumperLow();
 int OIGetDumperTravel();
 int OIGetDumperHigh();
-int OIGetDumperHang();
+int OIGetDumperFrontFence();
 int OIGetClawManual();
 int OIGetClawOpen();
 int OIGetClawClose();

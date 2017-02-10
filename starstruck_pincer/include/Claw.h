@@ -14,6 +14,7 @@
 #define CLAW_CLOSE 1
 #define CLAW_STOP 2
 #define CLAW_FIRST_OPEN 3
+#define CLAW_FULL_OPEN 4
 
 struct Claw{
 
@@ -32,9 +33,10 @@ Claw * initClaw(PantherMotor motor1, PantherMotor motor2, Pot * pot, double open
 void runClawAtSpeed(Claw * claw, int speed);
 double clawToPosition(Claw * claw, double sp, int correctPosError, int correctNegError);
 int clawGetMode(Claw * claw);
-double clawOpen(Claw * claw);
-double clawFirstOpen(Claw * claw);
-double clawClose(Claw * claw);
+int clawOpen(Claw * claw);
+int clawFirstOpen(Claw * claw);
+int clawClose(Claw * claw);
+int clawFullOpen(Claw * claw);
 void clawTeleop(Claw * claw);
 
 #endif /* INCLUDE_CLAW_H_ */
