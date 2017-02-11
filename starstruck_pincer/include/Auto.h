@@ -40,6 +40,7 @@ int alliance;
 #define FENCE_1ST_R_1 5
 #define FENCE_1ST_R_2 6
 #define TEST_AUTO 7
+#define SKILLS_L 8
 // END OF MODES
 
 int autonomousSelection;

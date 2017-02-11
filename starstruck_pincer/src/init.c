@@ -53,7 +53,7 @@ void lcdModeSelect()
 	int newButtonPressed;
 	int lastStep = 0;
 
-	const char * selectionText[] = {"DO_NOTHING", "MODE_1", "CUBE_FIRST", "FENCE_1ST_L_1", "FENCE_1ST_L_2", "FENCE_1ST_R_1", "FENCE_1ST_R_2", "TEST_AUTO"}; // MODE DEFINITIONS
+	const char * selectionText[] = {"DO_NOTHING", "MODE_1", "CUBE_FIRST", "FENCE_1ST_L_1", "FENCE_1ST_L_2", "FENCE_1ST_R_1", "FENCE_1ST_R_2", "TEST_AUTO", "SKILLS_L"}; // MODE DEFINITIONS
 	int size = sizeof(selectionText) / sizeof(int);
 
 	autonomousSelection = 0;
