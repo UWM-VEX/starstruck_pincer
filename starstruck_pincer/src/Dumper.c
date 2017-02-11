@@ -27,7 +27,7 @@ Dumper * initDumper(PantherMotor topLeft,
 	newDumper->frontFenceHeight = frontFenceHeight;
 	newDumper->middleFenceHeight = middleFenceHeight;
 	newDumper->dumperFrontMiddle = frontMiddleFenceHeight;
-	newDumper->sideFenceHeight = sideFenceHeight;
+	newDumper->dumperFrontSide = sideFenceHeight;
 
 	return newDumper;
 }
