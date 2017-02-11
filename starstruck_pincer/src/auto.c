@@ -596,7 +596,7 @@ if(autonomousSelection == FENCE_1ST_R_1)
 if(autonomousSelection == FENCE_1ST_R_2)
 {
 	command167 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
-	command168 = initDriveToWP(defaultProps,24,8,0);
+	command168 = initDriveToWP(defaultProps,24,6,0);
 	command169 = initAutoDumper(robotDumper, DUMPER_FRONT_FENCE);
 
 	command170 = initDriveToWP(defaultProps,36,0,0);
@@ -613,10 +613,10 @@ if(autonomousSelection == FENCE_1ST_R_2)
 	command179 = initAutoClaw(robotClaw, CLAW_CLOSE);
 	command180 = initTimeout(2000);
 	command181 = initAutoDumper(robotDumper, DUMPER_TRAVEL);
-	command182 = initDriveToWP(defaultProps,14,0,0);
+	command182 = initDriveToWP(defaultProps,16,0,0);
 	command183 = initTimeout(2500);
 
-	command184 = initDriveToWP(defaultProps,0,0,-80);
+	command184 = initDriveToWP(defaultProps,0,0,-90);
 	command185 = initDriveToWP(defaultProps,-34,0,0);
 	command186 = initTimeout(2500);
 
