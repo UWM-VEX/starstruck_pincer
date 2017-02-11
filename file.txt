@@ -161,7 +161,7 @@ Mode FENCE_1ST_L_2
 	driveToWP(defaultProps,-24,0,0)
 	driveToWP(defaultProps,0,0,85) 
 	autoDumper(robotDumper, DUMPER_LOW)
-		{
+	{
 		autoClaw(robotClaw, CLAW_OPEN) &&
 		timeout(1500)
 	}
@@ -271,6 +271,46 @@ Mode FENCE_1ST_L_3
 	timeout(500)
 	autoDumper(robotDumper,DUMPER_LOW)
 EndMode
+Mode FENCE_1ST_L_4
+	autoClaw(robotClaw, CLAW_FULL_OPEN) 
+	{
+		driveToWP(defaultProps,20,-12,0) ||
+		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
+	}
+	{
+		driveToWP(defaultProps,26,0,0) ||
+		timeout(2500)
+	}
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps,-36,20,0) ||
+		timeout(2500)
+	}
+	timeout(3000)
+	driveToWP(defaultProps, 0,0,90)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		timeout(1500)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+
+	driveToWP(defaultProps, 56,0,0)
+	autoClaw(robotClaw, CLAW_CLOSE)
+	timeout(1500)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps,0,-24,0) &&
+		driveToWP(defaultProps,0,0,90)
+	}
+	{
+		driveToWP(defaultProps,-24,0,0) ||
+		timeout(2500)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	autoClaw(robotClaw, CLAW_OPEN)
+	timeout(1000)
+	autoDumper(robotDumper, DUMPER_LOW)
+EndMode
 Mode FENCE_1ST_R_1
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
@@ -330,7 +370,7 @@ EndMode
 Mode FENCE_1ST_R_2
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
-		driveToWP(defaultProps,24,6,0) ||
+		driveToWP(defaultProps,24,2,0) ||
 		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
 	}
 	{
@@ -340,7 +380,10 @@ Mode FENCE_1ST_R_2
 	driveToWP(defaultProps,-24,0,0)
 	driveToWP(defaultProps,0,0,-90) 
 	autoDumper(robotDumper, DUMPER_LOW)
-	autoClaw(robotClaw, CLAW_OPEN)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		timeout(1500)
+	}
 	autoClaw(robotClaw, CLAW_STOP)
 	{
 		driveToWP(defaultProps,30,0,0) ||
