@@ -257,7 +257,7 @@ EndMode
 Mode FENCE_1ST_R_2
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
-		driveToWP(defaultProps,24,8,0) ||
+		driveToWP(defaultProps,24,6,0) ||
 		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
 	}
 	{
@@ -277,10 +277,10 @@ Mode FENCE_1ST_R_2
 	timeout(2000)
 	autoDumper(robotDumper, DUMPER_TRAVEL)
 	{
-		driveToWP(defaultProps,14,0,0)||
+		driveToWP(defaultProps,16,0,0)||
 		timeout(2500)
 	}
-	driveToWP(defaultProps,0,0,-80)
+	driveToWP(defaultProps,0,0,-90)
 	{
 		driveToWP(defaultProps,-34,0,0) ||
 		timeout(2500)
