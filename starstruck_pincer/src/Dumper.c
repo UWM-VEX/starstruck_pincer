@@ -10,7 +10,7 @@
 Dumper * initDumper(PantherMotor topLeft,
 		PantherMotor bottomLeft, PantherMotor topRight, PantherMotor bottomRight,
 		Pot * pot, double kP, double kI, double kD, double lowHeight,
-		double travelHeight, double highHeight, double frontFenceHeight, double middleFenceHeight, double sideFenceHeight)
+		double travelHeight, double highHeight, double frontFenceHeight, double middleFenceHeight, double sideFenceHeight, double frontMiddleFenceHeight)
 {
 	Dumper * newDumper = malloc(sizeof(Dumper));
 	newDumper->topLeft = topLeft;
@@ -26,6 +26,7 @@ Dumper * initDumper(PantherMotor topLeft,
 	newDumper->highHeight = highHeight;
 	newDumper->frontFenceHeight = frontFenceHeight;
 	newDumper->middleFenceHeight = middleFenceHeight;
+	newDumper->dumperFrontMiddle = frontMiddleFenceHeight;
 	newDumper->sideFenceHeight = sideFenceHeight;
 
 	return newDumper;
@@ -80,9 +81,9 @@ double getDumperHeight(Dumper * dumper)
 	case(DUMPER_FRONT_FENCE):
 		return dumper->frontFenceHeight;
 	case(DUMPER_SIDE_FENCE):
-		return dumper->sideFenceHeight;
+		return dumper->dumperFrontSide;
 	case(DUMPER_MIDDLE_FENCE):
-		return dumper->middleFenceHeight;
+		return dumper->dumperFrontMiddle;
 	default:
 		return dumper->travelHeight;
 	}
