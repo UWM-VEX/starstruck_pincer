@@ -116,8 +116,8 @@ int clawFullOpen(Claw * claw)
 void clawTeleop(Claw * claw)
 {
 	//lcdPrint(uart1, 1, "Movement: %d", potGetRawValue(claw->pot) - claw->lastPot);
-	//lcdPrint(uart1, 2, "Scaled: %f", potGetScaledValue(claw->pot));
-	//lcdPrint(uart1, 1, "Raw: %d", potGetRawValue(claw->pot));
+	lcdPrint(uart1, 2, "cScaled: %f", potGetScaledValue(claw->pot));
+	lcdPrint(uart1, 1, "cRaw: %d", potGetRawValue(claw->pot));
 	if(abs(OIGetClawManual()) > 50)
 	{
 		claw->mode = CLAW_MANUAL;
@@ -152,6 +152,10 @@ void clawTeleop(Claw * claw)
 		if(claw->autoState == CLAW_OPEN)
 		{
 			clawOpen(claw);
+		}
+		else if(claw->autoState == CLAW_FULL_OPEN)
+		{
+			clawFullOpen(claw);
 		}
 		else
 		{
