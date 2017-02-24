@@ -433,3 +433,64 @@ Mode TEST_AUTO
 	
 	driveToWP(defaultProps, 24, 0, 0)
 EndMode
+Mode SKILLS_L
+	{
+		driveToWP(defaultProps, -24,0,0) &&
+		autoClaw(robotClaw, CLAW_FIRST_OPEN)
+	}
+	{
+		driveToWP(defaultProps, 12, 0, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
+	}
+	timeout(1000)
+	{
+		autoClaw(robotClaw, CLAW_CLOSE) &&
+		timeout(1000)
+	}
+	driveToWP(defaultProps, -30, 0, 0)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoClaw(robotClaw, CLAW_STOP)
+	timeout(500)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) &&
+		driveToWP(defaultProps, 30, 0, 0)
+	}
+	timeout(1000)
+	{
+		autoClaw(robotClaw, CLAW_CLOSE) &&
+		timeout(1000)
+	}
+	driveToWP(defaultProps, -30, 0, 0)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoClaw(robotClaw, CLAW_STOP)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	timeout(500)
+	driveToWP(defaultProps, 20, 0, 0)
+	{
+		driveToWP(defaultProps, 0, 0, -90) &&
+		autoDumper(robotDumper, DUMPER_LOW)
+	}
+	driveToWP(defaultProps, 18, 0, 0)
+	{
+		autoClaw(robotClaw, CLAW_CLOSE) &&
+		timeout(2000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) &&
+		driveToWP(defaultProps, 48, 0, 0)
+	}
+	driveToWP(defaultProps, 0, 0, 90)
+	driveToWP(defaultProps, -20, 0, 0)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoClaw(robotClaw, CLAW_STOP)
+	timeout(500)
+EndMode
