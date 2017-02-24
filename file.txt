@@ -3,7 +3,7 @@ Pincer
 ##
 Mode DO_NOTHING
 	##
-	autoDumper(robotDumper,DUMPER_FRONT_FENCE)
+	autoDumper(robotDumper,DUMPER_FRONT_SIDE_FENCE)
 	##
 EndMode
 Mode MODE_1
@@ -96,7 +96,7 @@ Mode FENCE_1ST_L_1
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
 		driveToWP(defaultProps,20,-12,0) ||
-		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
+		autoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE)
 	}
 	{
 		driveToWP(defaultProps,26,0,0) ||
@@ -152,7 +152,7 @@ Mode FENCE_1ST_L_2
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
 		driveToWP(defaultProps,24,-12,0) ||
-		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
+		autoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE)
 	}
 	{
 		driveToWP(defaultProps,26,0,0) ||
@@ -211,7 +211,7 @@ Mode FENCE_1ST_L_3
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
 		driveToWP(defaultProps,24,-12,0) ||
-		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
+		autoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE)
 	}
 	{
 		driveToWP(defaultProps,26,0,0) ||
@@ -275,7 +275,7 @@ Mode FENCE_1ST_L_4
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
 		driveToWP(defaultProps,20,-12,0) ||
-		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
+		autoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE)
 	}
 	{
 		driveToWP(defaultProps,26,0,0) ||
@@ -315,7 +315,7 @@ Mode FENCE_1ST_R_1
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
 		driveToWP(defaultProps,20,6,0) ||
-		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
+		autoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE)
 	}
 	{
 		driveToWP(defaultProps,22,0,0) ||
@@ -371,7 +371,7 @@ Mode FENCE_1ST_R_2
 	autoClaw(robotClaw, CLAW_FULL_OPEN) 
 	{
 		driveToWP(defaultProps,24,2,0) ||
-		autoDumper(robotDumper, DUMPER_FRONT_FENCE)
+		autoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE)
 	}
 	{
 		driveToWP(defaultProps,36,0,0) ||
