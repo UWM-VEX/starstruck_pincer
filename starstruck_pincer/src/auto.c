@@ -548,7 +548,7 @@ if(autonomousSelection == FENCE_1ST_L_1)
 {
 	command53 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
 	command54 = initDriveToWP(defaultProps,20,-12,0);
-	command55 = initAutoDumper(robotDumper, DUMPER_FRONT_FENCE);
+	command55 = initAutoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE);
 
 	command56 = initDriveToWP(defaultProps,26,0,0);
 	command57 = initTimeout(2500);
@@ -597,7 +597,7 @@ if(autonomousSelection == FENCE_1ST_L_2)
 {
 	command91 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
 	command92 = initDriveToWP(defaultProps,24,-12,0);
-	command93 = initAutoDumper(robotDumper, DUMPER_FRONT_FENCE);
+	command93 = initAutoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE);
 
 	command94 = initDriveToWP(defaultProps,26,0,0);
 	command95 = initTimeout(2500);
@@ -649,7 +649,7 @@ if(autonomousSelection == FENCE_1ST_L_3)
 {
 	command132 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
 	command133 = initDriveToWP(defaultProps,24,-12,0);
-	command134 = initAutoDumper(robotDumper, DUMPER_FRONT_FENCE);
+	command134 = initAutoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE);
 
 	command135 = initDriveToWP(defaultProps,26,0,0);
 	command136 = initTimeout(2500);
@@ -706,7 +706,7 @@ if(autonomousSelection == FENCE_1ST_L_4)
 {
 	command178 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
 	command179 = initDriveToWP(defaultProps,20,-12,0);
-	command180 = initAutoDumper(robotDumper, DUMPER_FRONT_FENCE);
+	command180 = initAutoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE);
 
 	command181 = initDriveToWP(defaultProps,26,0,0);
 	command182 = initTimeout(2500);
@@ -740,7 +740,7 @@ if(autonomousSelection == FENCE_1ST_R_1)
 {
 	command203 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
 	command204 = initDriveToWP(defaultProps,20,6,0);
-	command205 = initAutoDumper(robotDumper, DUMPER_FRONT_FENCE);
+	command205 = initAutoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE);
 
 	command206 = initDriveToWP(defaultProps,22,0,0);
 	command207 = initTimeout(2500);
@@ -789,7 +789,7 @@ if(autonomousSelection == FENCE_1ST_R_2)
 {
 	command241 = initAutoClaw(robotClaw, CLAW_FULL_OPEN);
 	command242 = initDriveToWP(defaultProps,24,2,0);
-	command243 = initAutoDumper(robotDumper, DUMPER_FRONT_FENCE);
+	command243 = initAutoDumper(robotDumper, DUMPER_FRONT_SIDE_FENCE);
 
 	command244 = initDriveToWP(defaultProps,36,0,0);
 	command245 = initTimeout(2500);

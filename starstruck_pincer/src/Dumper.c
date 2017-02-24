@@ -10,7 +10,7 @@
 Dumper * initDumper(PantherMotor topLeft,
 		PantherMotor bottomLeft, PantherMotor topRight, PantherMotor bottomRight,
 		Pot * pot, double kP, double kI, double kD, double lowHeight,
-		double travelHeight, double highHeight, double frontFenceHeight, double middleFenceHeight, double sideFenceHeight, double frontMiddleFenceHeight)
+		double travelHeight, double highHeight, double frontFenceHeight, double sideFenceHeight, double frontMiddleFenceHeight)
 {
 	Dumper * newDumper = malloc(sizeof(Dumper));
 	newDumper->topLeft = topLeft;
@@ -24,8 +24,7 @@ Dumper * initDumper(PantherMotor topLeft,
 	newDumper->lowHeight = lowHeight;
 	newDumper->travelHeight = travelHeight;
 	newDumper->highHeight = highHeight;
-	newDumper->frontFenceHeight = frontFenceHeight;
-	newDumper->middleFenceHeight = middleFenceHeight;
+	newDumper->frontSideFenceHeight = frontFenceHeight;
 	newDumper->dumperFrontMiddle = frontMiddleFenceHeight;
 	newDumper->dumperFrontSide = sideFenceHeight;
 
@@ -78,8 +77,8 @@ double getDumperHeight(Dumper * dumper)
 		return dumper->travelHeight;
 	case(DUMPER_HIGH):
 		return dumper->highHeight;
-	case(DUMPER_FRONT_FENCE):
-		return dumper->frontFenceHeight;
+	case(DUMPER_FRONT_SIDE_FENCE):
+		return dumper->frontSideFenceHeight;
 	case(DUMPER_SIDE_FENCE):
 		return dumper->dumperFrontSide;
 	case(DUMPER_MIDDLE_FENCE):
@@ -117,7 +116,7 @@ void dumperTeleop(Dumper * dumper)
 		else if(OIGetDumperFrontFence())
 		{
 			dumper->mode = DUMPER_AUTO;
-			dumper->height = DUMPER_FRONT_FENCE;
+			dumper->height = DUMPER_FRONT_SIDE_FENCE;
 		}
 		else if(OIGetFenceMiddle())
 		{
