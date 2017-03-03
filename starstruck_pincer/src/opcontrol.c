@@ -41,7 +41,15 @@ void operatorControl()
 	{
 		tankDrive(robotDrive, OIGetDriveLeft(), OIGetDriveRight());
 		dumperTeleop(robotDumper);
-		clawTeleop(robotClaw);
+
+		if(OIGetClawOpen())
+		{
+			clawOpen(robotClaw);
+		}
+		else if(OIGetClawClose())
+		{
+			clawClose(robotClaw);
+		}
 
 		delay(25);
 	}

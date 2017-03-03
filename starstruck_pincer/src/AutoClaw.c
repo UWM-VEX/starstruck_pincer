@@ -22,23 +22,12 @@ void autoClaw(AutoClaw * step)
 {
 	if(step->type == CLAW_OPEN)
 	{
-		step->isFinished = clawOpen(step->claw);
-	}
-	else if(step->type == CLAW_CLOSE)
-	{
-		step->isFinished = clawClose(step->claw);
-	}
-	else if(step->type == CLAW_FIRST_OPEN)
-	{
-		step->isFinished = clawFirstOpen(step->claw);
-	}
-	else if(step->type == CLAW_FULL_OPEN)
-	{
-		step->isFinished = clawFullOpen(step->claw);
+		clawOpen(step->claw);
 	}
 	else
 	{
-		runClawAtSpeed(step->claw, 0);
-		step->isFinished = 1;
+		clawClose(step->claw);
 	}
+
+	step->isFinished = 1;
 }
