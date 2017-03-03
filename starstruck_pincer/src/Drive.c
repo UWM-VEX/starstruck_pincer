@@ -3,8 +3,8 @@
 /**
  * Initializes a new drive object composed of six PantherMotors, two encoders and a gyro.
  */
-Drive initDrive(PantherMotor frontLeftMotor, PantherMotor frontRightMotor,
-		PantherMotor rearLeftMotor, PantherMotor rearRightMotor,
+Drive initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
+		SmartMotor* rearLeftMotor, SmartMotor* rearRightMotor,
 		Encoder frontLeftEncoder, Encoder frontRightEncoder,
 		Encoder rearLeftEncoder, Encoder rearRightEncoder, Gyro gyro)
 {
@@ -32,8 +32,8 @@ void holonomicDrive(Drive drive, int magnitude, int direction, int rotation)
 	frontLeft = (int) (frontLeft * 0.87);
 	rearRight = (int) (rearRight * 0.87);
 
-	setPantherMotor(drive.frontLeftMotor, frontLeft);
-	setPantherMotor(drive.rearLeftMotor, frontRight);
-	setPantherMotor(drive.frontRightMotor, rearLeft);
-	setPantherMotor(drive.rearRightMotor, rearRight);
+	setSmartMotor(drive.frontLeftMotor, frontLeft);
+	setSmartMotor(drive.rearLeftMotor, frontRight);
+	setSmartMotor(drive.frontRightMotor, rearLeft);
+	setSmartMotor(drive.rearRightMotor, rearRight);
 }
