@@ -3,37 +3,42 @@
 /**
  * Initializes a new drive object composed of six PantherMotors, two encoders and a gyro.
  */
-Drive initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
+Drive* initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
+		SmartMotor* middleLeftMotor, SmartMotor* middleRightMotor,
 		SmartMotor* rearLeftMotor, SmartMotor* rearRightMotor,
-		Encoder frontLeftEncoder, Encoder frontRightEncoder,
-		Encoder rearLeftEncoder, Encoder rearRightEncoder, Gyro gyro)
+		Encoder leftEncoder, Encoder rightEncoder, Gyro gyro)
 {
-	Drive newDrive = {frontLeftMotor, frontRightMotor,
-			rearLeftMotor, rearRightMotor,
-			frontLeftEncoder, frontRightEncoder,
-			rearLeftEncoder, rearRightEncoder,
-			gyro};
+	Drive* newDrive = malloc(sizeof(Drive));
+
+	newDrive->frontLeftMotor = frontLeftMotor;
+	newDrive->frontRightMotor = frontRightMotor;
+	newDrive->middleLeftMotor = middleLeftMotor;
+	newDrive->middleRightMotor = middleRightMotor;
+	newDrive->rearLeftMotor = rearLeftMotor;
+	newDrive->rearRightMotor = rearRightMotor;
+	newDrive->leftEncoder = leftEncoder;
+	newDrive->rightEncoder = rightEncoder;
+	newDrive->gyro = gyro;
 
 	return newDrive;
 }
 
-void holonomicDrive(Drive drive, int magnitude, int direction, int rotation)
+void tankDrive(Drive* drive, int left, int right)
 {
-	int frontLeft = magnitude + direction + rotation;
-	int frontRight = magnitude - direction + rotation;
-	int rearLeft = magnitude - direction - rotation;
-	int rearRight = magnitude + direction - rotation;
+	setSmartMotor(drive->frontLeftMotor, left);
+	setSmartMotor(drive->frontRightMotor, right);
+	setSmartMotor(drive->middleLeftMotor, left);
+	setSmartMotor(drive->middleRightMotor, right);
+	setSmartMotor(drive->rearLeftMotor, left);
+	setSmartMotor(drive->rearRightMotor, right);
+}
 
-	frontLeft = limit(frontLeft, 127, -127);
-	frontRight = limit(frontRight, 127, -127);
-	rearLeft = limit(rearLeft, 127, -127);
-	rearRight = limit(rearRight, 127, -127);
+void arcadeDrive(Drive* drive, int magnitude, int rotation)
+{
+	int left = magnitude + rotation;
+	int right = magnitude - rotation;
+	left = limit(left, 127, -127);
+	right = limit(right, 127, -127);
 
-	frontLeft = (int) (frontLeft * 0.87);
-	rearRight = (int) (rearRight * 0.87);
-
-	setSmartMotor(drive.frontLeftMotor, frontLeft);
-	setSmartMotor(drive.rearLeftMotor, frontRight);
-	setSmartMotor(drive.frontRightMotor, rearLeft);
-	setSmartMotor(drive.rearRightMotor, rearRight);
+	tankDrive(drive, left, right);
 }

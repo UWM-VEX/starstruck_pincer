@@ -17,20 +17,21 @@ struct Drive{
 
 	SmartMotor* frontLeftMotor;
 	SmartMotor* frontRightMotor;
+	SmartMotor* middleLeftMotor;
+	SmartMotor* middleRightMotor;
 	SmartMotor* rearLeftMotor;
 	SmartMotor* rearRightMotor;
-	Encoder frontLeftEncoder;
-	Encoder frontRightEncoder;
-	Encoder rearLeftEncoder;
-	Encoder rearRightEncoder;
+	Encoder leftEncoder;
+	Encoder rightEncoder;
 	Gyro gyro;
 
 }typedef Drive;
 
-Drive initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
+Drive* initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
+		SmartMotor* middleLeftMotor, SmartMotor* middleRightMotor,
 		SmartMotor* rearLeftMotor, SmartMotor* rearRightMotor,
-		Encoder frontLeftEncoder, Encoder frontRightEncoder,
-		Encoder rearLeftEncoder, Encoder rearRightEncoder, Gyro gyro);
-void holonomicDrive(Drive drive, int magnitude, int direction, int rotation);
+		Encoder leftEncoder, Encoder rightEncoder, Gyro gyro);
+void tankDrive(Drive* drive, int left, int right);
+void arcadeDrive(Drive* drive, int magnitude, int rotation);
 
 #endif /* DRIVE_H_ */

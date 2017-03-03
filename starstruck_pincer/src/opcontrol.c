@@ -39,8 +39,7 @@ void operatorControl()
 
 	while (true)
 	{
-		holonomicDrive(robotDrive, OIGetDriveMagnitude(), OIGetDriveDirection(),
-				OIGetDriveRotation());
+		tankDrive(robotDrive, OIGetDriveLeft(), OIGetDriveRight());
 		dumperTeleop(robotDumper);
 		clawTeleop(robotClaw);
 

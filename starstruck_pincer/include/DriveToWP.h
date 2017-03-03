@@ -14,17 +14,12 @@
 
 struct DriveToWPProperties {
 
-	Drive drive;
+	Drive* drive;
 	double magnitudeDB;
 	double magnitudeBreakingDistance;
 	long magnitudeRampUpTime;
 	int magnitudeMaxSpeed;
 	int magnitudeMinSpeed;
-	double directionDB;
-	double directionBreakingDistance;
-	long directionRampUpTime;
-	int directionMaxSpeed;
-	int directionMinSpeed;
 	int rotationDB;
 	int rotationBreakingDistance;
 	int rotationMaxSpeed;
@@ -39,31 +34,23 @@ struct DriveToWP {
 
 	DriveToWPProperties *properties;
 	double distance;
-	double direction;
 	int rotation;
 	int isFinished;
 	int reachedDistance;
-	int reachedDirection;
 	int reachedRotation;
 	unsigned long timeAchievedGoodLocation;
 	int isFirstTime;
-	int firstFrontLeftEncoder;
-	int firstRearLeftEncoder;
-	int firstFrontRightEncoder;
-	int firstRearRightEncoder;
+	int firstLeftEncoder;
+	int firstRightEncoder;
 	int firstGyro;
 
 } typedef DriveToWP;
 
-DriveToWPProperties * initDriveToWPProperties(Drive drive, double magnitudeDB,
+DriveToWPProperties * initDriveToWPProperties(Drive* drive, double magnitudeDB,
 		double magnitudeBreakingDistance, long magnitudeRampUpTime, int magnitudeMaxSpeed,
-		int magnitudeMinSpeed, double directionDB, double directionBreakingDistance,
-		long directionRampUpTime, int directionMaxSpeed, int directionMinSpeed,
-		int rotationDB, int rotationBreakingDistance, int rotationMaxSpeed,
-		int rotationMinSpeed, double wheelDiameter, int gyroInverted,
-		unsigned long holdTime);
-DriveToWP * initDriveToWP(DriveToWPProperties * properties, double distance,
-		double direction, int rotation);
+		int magnitudeMinSpeed, int rotationDB, int rotationBreakingDistance, int rotationMaxSpeed,
+		int rotationMinSpeed, double wheelDiameter, int gyroInverted, unsigned long holdTime);
+DriveToWP * initDriveToWP(DriveToWPProperties * properties, double distance, int rotation);
 void driveToWP(DriveToWP * step);
 
 #endif /* PROPDRIVETOWAYPOINT_H_ */

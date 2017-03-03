@@ -14,7 +14,7 @@
 #define IN 0
 #define OUT 1
 
-Drive robotDrive;
+Drive * robotDrive;
 Dumper * robotDumper;
 Claw * robotClaw;
 
