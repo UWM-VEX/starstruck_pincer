@@ -47,6 +47,7 @@
 #include "OI.h"
 #include "PantherMotor.h"
 #include "Utilities.h"
+#include "SmartMotor.h"
 #include "PIDController.h"
 #include "Pot.h"
 #include "Drive.h"
