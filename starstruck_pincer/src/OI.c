@@ -9,12 +9,12 @@
 
 int OIGetDriveLeft()
 {
-	return joystickGetAnalog(1, 3);
+	return enforceDeadband(joystickGetAnalog(1, 3), 0, 20);
 }
 
 int OIGetDriveRight()
 {
-	return joystickGetAnalog(1, 2);
+	return enforceDeadband(joystickGetAnalog(1, 2), 0, 20);
 }
 
 int OIGetDriveY()

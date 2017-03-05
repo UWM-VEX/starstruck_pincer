@@ -12,6 +12,7 @@ Claw * initClaw(int solenoidPort)
 	Claw * newClaw = malloc(sizeof(Claw));
 
 	newClaw->solenoidPort = solenoidPort;
+	pinMode(newClaw->solenoidPort, OUTPUT);
 
 	return newClaw;
 }

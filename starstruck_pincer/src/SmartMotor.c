@@ -21,7 +21,8 @@ SmartMotor* initSmartMotor(int port, int inverted, long rampUpTime)
 
 int setSmartMotor(SmartMotor* motor, int speed)
 {
-	double maxStep = (127.0 / motor->rampUpTime) * (1.0 + millis() - motor->lastTime);
+	double maxStep = (127.0 / motor->rampUpTime) * (millis() - motor->lastTime);
+	motor->lastTime = millis();
 	motor->lastSpeed = limitDouble((double) speed, motor->lastSpeed + maxStep, motor->lastSpeed - maxStep);
 	int finalSpeed = limit((int) motor->lastSpeed, 127, -127);
 	setPantherMotor(motor->motor, finalSpeed);
