@@ -169,12 +169,12 @@ void initializeIO() {
  */
 
 void initialize() {
-	robotDrive = initDrive(initSmartMotor(1,0,250), initSmartMotor(8,1,250),
-						initSmartMotor(2,0,250), initSmartMotor(9,1,250),
-						initSmartMotor(3,0,250), initSmartMotor(10,1,250),
+	robotDrive = initDrive(initSmartMotor(1,0,250), initSmartMotor(7,1,250),
+						initSmartMotor(3,0,250), initSmartMotor(8,1,250),
+						initSmartMotor(4,0,250), initSmartMotor(10,1,250),
 						encoderInit(1, 2, 1), encoderInit(3,4,0), gyroInit(1, 210));
-	robotDumper = initDumper(initPantherMotor(4, 0), initPantherMotor(5, 0),
-			initPantherMotor(6, 1), initPantherMotor(7, 1),
+	robotDumper = initDumper(initPantherMotor(2, 0), initPantherMotor(5, 0),
+			initPantherMotor(6, 1), initPantherMotor(9, 1),
 			initPot(5, 3300, 8), 700, 0, 0, 0, .45, 0.65, 0.33, 0.8, 0.9);
 
 	lcdModeSelect();
