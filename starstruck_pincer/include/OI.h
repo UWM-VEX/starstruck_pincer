@@ -23,6 +23,7 @@ int OIGetDumperFrontFence();
 int OIGetClawManual();
 int OIGetClawOpen();
 int OIGetClawClose();
+int OIGetClawChange();
 int OIGetDumperOverride();
 int OIGetFenceMiddle();
 int OIGetFenceSide();

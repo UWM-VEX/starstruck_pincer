@@ -88,6 +88,12 @@ int OIGetClawClose()
 			joystickGetDigital(2,6,JOY_UP);
 }
 
+int OIGetClawChange()
+{
+	return joystickGetDigital(1,6,JOY_UP) ||
+				joystickGetDigital(2,6,JOY_UP);
+}
+
 int OIGetDumperOverride()
 {
 	return (joystickGetDigital(1, 5, JOY_DOWN && joystickGetDigital(1, 6, JOY_DOWN)) ||

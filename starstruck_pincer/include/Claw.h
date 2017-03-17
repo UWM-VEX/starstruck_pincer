@@ -14,6 +14,7 @@
 struct Claw{
 
 	int solenoidPort;
+	int clawState;
 
 }typedef Claw;
 

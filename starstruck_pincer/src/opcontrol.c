@@ -37,19 +37,26 @@ void operatorControl()
 {
 	teleopInit();
 
+	short lastClawButton = 0;
+
 	while (true)
 	{
 		tankDrive(robotDrive, OIGetDriveLeft(), OIGetDriveRight());
 		dumperTeleop(robotDumper);
 
-		if(OIGetClawOpen())
+		if(OIGetClawChange() && ! lastClawButton)
 		{
-			clawOpen(robotClaw);
+			if(robotClaw->clawState == CLAW_CLOSE)
+			{
+				clawOpen(robotClaw);
+			}
+			else
+			{
+				clawClose(robotClaw);
+			}
 		}
-		else if(OIGetClawClose())
-		{
-			clawClose(robotClaw);
-		}
+
+		lastClawButton = OIGetClawChange();
 
 		delay(25);
 	}
