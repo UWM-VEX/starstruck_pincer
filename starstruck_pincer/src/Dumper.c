@@ -18,7 +18,7 @@ Dumper * initDumper(PantherMotor topLeft,
 	newDumper->topRight = topRight;
 	newDumper->bottomRight = bottomRight;
 	newDumper->pot = pot;
-	newDumper->pidController = initPIDController(kP, kI, kD, 0, 0, 3);
+	newDumper->pidController = initPIDController(kP, kI, kD, 0, 0, 0.03);
 	newDumper->mode = DUMPER_MANUAL;
 	newDumper->height = DUMPER_LOW;
 	newDumper->lowHeight = lowHeight;
@@ -63,7 +63,7 @@ void updateDumperPID(Dumper * dumper)
 	double pv = potGetScaledValue(dumper->pot);
 	PIDRunController(dumper->pidController, pv);
 
-	//lcdPrint(uart1, 2, "Lift: %f", potGetScaledValue(dumper->pot));
+	lcdPrint(uart1, 2, "Lift: %f", potGetScaledValue(dumper->pot));
 	//lcdPrint(uart1, 1, "Raw: %d", potGetRawValue(dumper->pot));
 }
 

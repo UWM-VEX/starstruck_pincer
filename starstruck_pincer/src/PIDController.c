@@ -130,7 +130,7 @@ int PIDRunController(PIDController *controller, double processVariable)
 
 	//printf("PV: %d\n", processVariable);
 	//printf("SP: %d\n", (*controller).setPoint);
-	//printf("I: %d\n", iContribution);
+	lcdPrint(uart1, 1, "I: %d", iContribution);
 
 	return pContribution + iContribution + dContribution + fContribution;
 }

@@ -8,8 +8,8 @@
 #ifndef INCLUDE_CLAW_H_
 #define INCLUDE_CLAW_H_
 
-#define CLAW_OPEN HIGH
-#define CLAW_CLOSE LOW
+#define CLAW_OPEN LOW
+#define CLAW_CLOSE HIGH
 
 struct Claw{
 
