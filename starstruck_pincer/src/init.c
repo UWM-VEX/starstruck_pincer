@@ -53,7 +53,7 @@ void lcdModeSelect()
 	int newButtonPressed;
 	int lastStep = 0;
 
-	const char * selectionText[] = {"DO_NOTHING", "MODE_1", "CUBE_FIRST", "FENCE_1ST_L_1", "FENCE_1ST_L_2", "FENCE_1ST_L_3", "FENCE_1ST_L_4", "FENCE_1ST_R_1", "FENCE_1ST_R_2", "TEST_AUTO", "SKILLS_L"}; // MODE DEFINITIONS
+	const char * selectionText[] = {"DO_NOTHING", "MODE_1"}; // MODE DEFINITIONS
 	int size = sizeof(selectionText) / sizeof(int);
 
 	autonomousSelection = 0;
@@ -171,7 +171,7 @@ void initializeIO() {
 void initialize() {
 	robotDrive = initDrive(initSmartMotor(1,0,250), initSmartMotor(7,1,250),
 						initSmartMotor(3,0,250), initSmartMotor(8,1,250),
-						initSmartMotor(4,0,250), initSmartMotor(10,1,250),
+						initSmartMotor(4,0,250), initSmartMotor(10,0,250),
 						encoderInit(1, 2, 1), encoderInit(3,4,0), gyroInit(1, 210));
 	robotDumper = initDumper(initPantherMotor(2, 0), initPantherMotor(5, 0),
 			initPantherMotor(6, 1), initPantherMotor(9, 1),
