@@ -87,13 +87,15 @@ int PIDgetDContribution(PIDController *controller, double processVariable)
 {
 	int output;
 	double error = (*controller).setPoint - processVariable;
-	if(absDouble(error - controller->lastError) > 0.005) {
+	if(/*absDouble(error - controller->lastError) > 0.00005*/1) {
 		controller->lastDTime = millis();
 		if(millis() - controller->lastDTime < 250) {
-			int timeDiff = (int) (millis() - (*controller).lastTime);
+			long timeDiff = (millis() - (*controller).lastTime);
+			if(timeDiff == 0)
+				return 0;
 			double errorDiff = error - (*controller).lastError;
-			double slope = errorDiff / ((double) timeDiff);
-			controller->lastD = (int) (slope * (*controller).kD);
+			double slope = errorDiff / timeDiff;
+			controller->lastD = (int) (slope * ((*controller).kD));
 			output = controller->lastD;
 			//lcdPrint(uart1, 1, "%f", slope);
 		}
@@ -130,7 +132,7 @@ int PIDRunController(PIDController *controller, double processVariable)
 
 	//printf("PV: %d\n", processVariable);
 	//printf("SP: %d\n", (*controller).setPoint);
-	lcdPrint(uart1, 1, "I: %d", iContribution);
+	lcdPrint(uart1, 1, "D: %d", dContribution);
 
 	return pContribution + iContribution + dContribution + fContribution;
 }

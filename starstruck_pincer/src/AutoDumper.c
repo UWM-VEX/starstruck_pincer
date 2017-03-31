@@ -28,19 +28,19 @@ void autoDumper(AutoDumper * step)
 	{
 	case(DUMPER_LOW):
 		// If the dumper is no longer moving, the step is finished
-		step->isFinished = dumperToHeight(step->dumper, step->dumper->lowHeight) == 0;
+		step->isFinished = dumperToHeight(step->dumper, step->dumper->lowHeight) == 1;
 		break;
 	case(DUMPER_TRAVEL):
-		step->isFinished = dumperToHeight(step->dumper, step->dumper->travelHeight) == 0;
+		step->isFinished = dumperToHeight(step->dumper, step->dumper->travelHeight) == 1;
 		break;
 	case(DUMPER_HIGH):
-		step->isFinished = dumperToHeight(step->dumper, step->dumper->highHeight) == 0;
+		step->isFinished = dumperToHeight(step->dumper, step->dumper->highHeight) == 1;
 		break;
 	case(DUMPER_FRONT_SIDE_FENCE):
-		step->isFinished = dumperToHeight(step->dumper, step->dumper->frontSideFenceHeight) == 0;
+		step->isFinished = dumperToHeight(step->dumper, step->dumper->frontSideFenceHeight) == 1;
 		break;
 	case(DUMPER_MIDDLE_FENCE):
-			step->isFinished = dumperToHeight(step->dumper, step->dumper->dumperFrontMiddle) == 0;
+			step->isFinished = dumperToHeight(step->dumper, step->dumper->dumperFrontMiddle) == 1;
 			break;
 	default:
 		runDumperAtSpeed(step->dumper, 0);

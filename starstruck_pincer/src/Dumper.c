@@ -18,7 +18,7 @@ Dumper * initDumper(PantherMotor topLeft,
 	newDumper->topRight = topRight;
 	newDumper->bottomRight = bottomRight;
 	newDumper->pot = pot;
-	newDumper->pidController = initPIDController(kP, kI, kD, 0, 0, 0.03);
+	newDumper->pidController = initPIDController(kP, kI, kD, 0, 0, 0.05);
 	newDumper->mode = DUMPER_MANUAL;
 	newDumper->height = DUMPER_LOW;
 	newDumper->lowHeight = lowHeight;
@@ -53,9 +53,9 @@ int dumperToHeight(Dumper *dumper, double height)
 	PIDsetSetPoint(dumper->pidController, height);
 	int speed = PIDRunController(dumper->pidController, pv);
 	speed = limit(speed, 127, -127);
-	speed = enforceDeadband(speed, 0, 10);
+	speed = enforceDeadband(speed, 0, 20);
 	runDumperAtSpeed(dumper, speed);
-	return speed;
+	return (absDouble(pv - height) < 0.05);
 }
 
 void updateDumperPID(Dumper * dumper)
