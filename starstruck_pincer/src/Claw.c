@@ -14,7 +14,7 @@ Claw * initClaw(int solenoidPort)
 	newClaw->solenoidPort = solenoidPort;
 	newClaw->clawState = CLAW_CLOSE;
 	pinMode(newClaw->solenoidPort, OUTPUT);
-	digitalWrite(newClaw->solenoidPort, CLAW_CLOSE);
+	//digitalWrite(newClaw->solenoidPort, CLAW_CLOSE);
 
 	return newClaw;
 }

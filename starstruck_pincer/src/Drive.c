@@ -3,9 +3,9 @@
 /**
  * Initializes a new drive object composed of six PantherMotors, two encoders and a gyro.
  */
-Drive* initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
-		SmartMotor* middleLeftMotor, SmartMotor* middleRightMotor,
-		SmartMotor* rearLeftMotor, SmartMotor* rearRightMotor,
+Drive* initDrive(PantherMotor frontLeftMotor, PantherMotor frontRightMotor,
+		PantherMotor middleLeftMotor, PantherMotor middleRightMotor,
+		PantherMotor rearLeftMotor, PantherMotor rearRightMotor,
 		Encoder leftEncoder, Encoder rightEncoder, Gyro gyro)
 {
 	Drive* newDrive = malloc(sizeof(Drive));
@@ -25,12 +25,12 @@ Drive* initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
 
 void tankDrive(Drive* drive, int left, int right)
 {
-	setSmartMotor(drive->frontLeftMotor, left);
-	setSmartMotor(drive->frontRightMotor, right);
-	setSmartMotor(drive->middleLeftMotor, left);
-	setSmartMotor(drive->middleRightMotor, right);
-	setSmartMotor(drive->rearLeftMotor, left);
-	setSmartMotor(drive->rearRightMotor, right);
+	setPantherMotor(drive->frontLeftMotor, left);
+	setPantherMotor(drive->frontRightMotor, right);
+	setPantherMotor(drive->middleLeftMotor, left);
+	setPantherMotor(drive->middleRightMotor, right);
+	setPantherMotor(drive->rearLeftMotor, left);
+	setPantherMotor(drive->rearRightMotor, right);
 }
 
 void arcadeDrive(Drive* drive, int magnitude, int rotation)

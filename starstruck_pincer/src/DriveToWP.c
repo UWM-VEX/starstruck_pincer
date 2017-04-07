@@ -54,8 +54,8 @@ void driveToWP(DriveToWP * step)
 		step->isFirstTime = 0;
 	}
 
-	//lcdPrint(uart1, 1, "FL: %d", encoderGet(step->properties->drive.frontLeftEncoder));
-	//lcdPrint(uart1, 2, "RL: %d", encoderGet(step->properties->drive.rearLeftEncoder));
+	//lcdPrint(uart1, 1, "L: %d", encoderGet(step->properties->drive->leftEncoder));
+	lcdPrint(uart1, 2, "R: %d", encoderGet(step->properties->drive->rightEncoder));
 	//lcdPrint(uart1, 1, "Gyro: %d", gyroGet(step->properties->drive.gyro));
 
 	double averageMagEncoder = ((double)((encoderGet(step->properties->drive->leftEncoder)
@@ -66,6 +66,8 @@ void driveToWP(DriveToWP * step)
 			step->properties->wheelDiameter);
 	int rotationPV = gyroGet(step->properties->drive->gyro) - step->firstGyro;
 
+	lcdPrint(uart1, 1, "Dist: %f", distancePV);
+
 	if(step->properties->gyroInverted)
 	{
 		rotationPV *= -1;
@@ -74,7 +76,7 @@ void driveToWP(DriveToWP * step)
 	double distanceError = step->distance - distancePV;
 	int rotationError = step->rotation - rotationPV;
 
-	lcdPrint(uart1, 2, "Rot: %d", rotationError);
+	//lcdPrint(uart1, 2, "Rot: %d", rotationError);
 
 	int inDistanceDB = (absDouble(distanceError) < step->properties->magnitudeDB);
 
@@ -166,12 +168,12 @@ void driveToWP(DriveToWP * step)
 		// Check that we're at a good distance, if we're not, slowly move to a good distance
 		if(absDouble(distanceError) < step->properties->magnitudeDB)
 		{
-			lcdSetText(uart1, 1, "Mag: Good");
+			//lcdSetText(uart1, 1, "Mag: Good");
 			goodDistance = 1;
 		}
 		else
 		{
-			lcdSetText(uart1, 1, "Mag: Adj");
+			//lcdSetText(uart1, 1, "Mag: Adj");
 			magnitude = step->properties->magnitudeMinSpeed;
 		}
 
