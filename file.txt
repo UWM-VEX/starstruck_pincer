@@ -101,6 +101,60 @@ Mode MODE_1
 	}
 	autoDumper(robotDumper, DUMPER_LOW)
 EndMode
+Mode CUBE_NEAR
+	autoClaw(robotClaw, CLAW_OPEN)	
+	driveToWP(defaultProps, -18, 0)
+	{
+		driveToWP(defaultProps, 0, -20) ||
+		timeout(2000)
+	}
+	driveToWP(defaultProps, 50, 0)
+	autoClaw(robotClaw, CLAW_CLOSE)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps, 0, 20) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
+	}
+	{
+		driveToWP(defaultProps, -44, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
+	}
+	{
+		driveToWP(defaultProps, 0, 90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
+	}
+	{
+		driveToWP(defaultProps, -30, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+	driveToWP(defaultProps, 12, 0)
+	driveToWP(defaultProps, 0, -60)
+	driveToWP(defaultProps, 72, 0)
+	autoClaw(robotClaw, CLAW_CLOSE)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps, 0, 60) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
+	}
+	{
+		driveToWP(defaultProps, -48, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+EndMode
 Mode TEST
 	driveToWP(defaultProps, 24, 0)
 	driveToWP(defaultProps, 0, -90)
