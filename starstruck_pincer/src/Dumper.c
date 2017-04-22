@@ -56,7 +56,7 @@ int dumperToHeight(Dumper *dumper, double height)
 	speed = limit(speed, 127, -127);
 	speed = enforceDeadband(speed, 0, 20);
 	runDumperAtSpeed(dumper, speed);
-	return (absDouble(pv - height) < 0.05);
+	return (absDouble(pv - height) < 0.1);
 }
 
 void updateDumperPID(Dumper * dumper)
@@ -65,7 +65,7 @@ void updateDumperPID(Dumper * dumper)
 	PIDRunController(dumper->pidController, pv);
 
 	lcdPrint(uart1, 2, "Lift: %f", potGetScaledValue(dumper->pot));
-	//lcdPrint(uart1, 1, "Raw: %d", potGetRawValue(dumper->pot));
+	//lcdPrint(uart1, 2, "Raw: %d", potGetRawValue(dumper->pot));
 }
 
 double getDumperHeight(Dumper * dumper)

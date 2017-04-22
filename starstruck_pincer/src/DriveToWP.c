@@ -54,7 +54,7 @@ void driveToWP(DriveToWP * step)
 		step->isFirstTime = 0;
 	}
 
-	//lcdPrint(uart1, 1, "L: %d", encoderGet(step->properties->drive->leftEncoder));
+	lcdPrint(uart1, 1, "L: %d", encoderGet(step->properties->drive->leftEncoder));
 	lcdPrint(uart1, 2, "R: %d", encoderGet(step->properties->drive->rightEncoder));
 	//lcdPrint(uart1, 1, "Gyro: %d", gyroGet(step->properties->drive.gyro));
 
@@ -66,7 +66,7 @@ void driveToWP(DriveToWP * step)
 			step->properties->wheelDiameter);
 	int rotationPV = gyroGet(step->properties->drive->gyro) - step->firstGyro;
 
-	lcdPrint(uart1, 1, "Dist: %f", distancePV);
+	//lcdPrint(uart1, 1, "Dist: %f", distancePV);
 
 	if(step->properties->gyroInverted)
 	{

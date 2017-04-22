@@ -4,13 +4,17 @@ Pincer
 Mode DO_NOTHING
 EndMode
 Mode CUBE_FIRST
-	autoClaw(robotClaw, CLAW_OPEN)	
+	autoClaw(robotClaw, CLAW_OPEN)
+	timeout(1000)
 	driveToWP(defaultProps, -18, 0)
 	{
 		driveToWP(defaultProps, 0, -20) ||
 		timeout(2000)
 	}
-	driveToWP(defaultProps, 99, 0)
+	{
+		driveToWP(defaultProps, 99, 0) ||
+		timeout(6000)
+	}
 	{
 		autoClaw(robotClaw, CLAW_CLOSE) &&
 		autoDumper(robotDumper, DUMPER_TRAVEL)
@@ -21,26 +25,32 @@ Mode CUBE_FIRST
 	}
 	{
 		autoDumper(robotDumper, DUMPER_TRAVEL) &&
-		driveToWP(defaultProps, -18, 0) ||
-		timeout(3000)
+		driveToWP(defaultProps, -15, 0) ||
+		timeout(2000)
 	}
 	autoDumper(robotDumper, DUMPER_HIGH)
 	{
 		autoDumper(robotDumper, DUMPER_HIGH) &&
 		autoClaw(robotClaw, CLAW_OPEN)
 	}
-	autoDumper(robotDumper, DUMPER_LOW)
-	autoClaw(robotClaw, CLAW_OPEN)
-	driveToWP(defaultProps, 6, 0)
-	driveToWP(defaultProps, 0, -20)
-	{	
-		driveToWP(defaultProps, 34, 0) ||
-		timeout(3000)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps, 42, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
 	}
-	autoClaw(robotClaw, CLAW_CLOSE)
-	driveToWP(defaultProps,0,110)
-	autoClaw(robotClaw, CLAW_OPEN)
-	driveToWP(defaultProps, 91, 0)
+	{
+		driveToWP(defaultProps, 0, 90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
+	}
+	{
+		driveToWP(defaultProps, -12, 0) &&
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 91, 0) ||
+		timeout(6000)
+	}
 	autoClaw(robotClaw, CLAW_CLOSE)
 	autoDumper(robotDumper, DUMPER_TRAVEL)
 	{
@@ -59,64 +69,289 @@ Mode CUBE_FIRST
 	}
 	autoDumper(robotDumper, DUMPER_LOW)
 EndMode
-Mode MODE_1
-	autoClaw(robotClaw, CLAW_OPEN)	
-	driveToWP(defaultProps, -18, 0)
-	driveToWP(defaultProps, 96, 0)
+Mode MODE_1L
+	autoClaw(robotClaw, CLAW_OPEN)
+	timeout(1000)	
+	{
+		driveToWP(defaultProps, -18, 0) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 96, 0) ||
+		timeout(6000)
+	}
 	autoClaw(robotClaw, CLAW_CLOSE)
-	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
 	{
 		driveToWP(defaultProps, 0, 90) &&
-		autoDumper(robotDumper, DUMPER_TRAVEL)
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
 	}
 	{
 		driveToWP(defaultProps, -44, 0) &&
 		autoDumper(robotDumper, DUMPER_TRAVEL) ||
 		timeout(5000)
 	}
-	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) ||
+		timeout(3000)
+	}
 	{
 		autoDumper(robotDumper, DUMPER_HIGH) &&
-		autoClaw(robotClaw, CLAW_OPEN)
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(3000)
 	}
-	autoDumper(robotDumper, DUMPER_LOW)
-	driveToWP(defaultProps, 20, 0)
-	driveToWP(defaultProps, 0, 90)
-	driveToWP(defaultProps, 33, 0)
+	{
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_STOP) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 20, 0) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 0, 90) ||
+		timeout(5000)
+	}
+	{
+		driveToWP(defaultProps, 33, 0) ||
+		timeout(3000)
+	}
 	autoClaw(robotClaw, CLAW_CLOSE)
-	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
 	{
 		driveToWP(defaultProps, 0, -90) &&
-		autoDumper(robotDumper, DUMPER_TRAVEL)
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
+	}
+	{
+		driveToWP(defaultProps, -20, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 12, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 0, 80) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
+	}
+	{
+		driveToWP(defaultProps, -12, 0) &&
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 48, 0) ||
+		timeout(3000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, -36, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 0, -80) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
 	}
 	{
 		driveToWP(defaultProps, -24, 0) &&
+		autoDumper(robotDumper, DUMPER_HIGH) ||
+		timeout(2000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(3000)
+	}
+EndMode
+Mode MODE_1R
+	autoClaw(robotClaw, CLAW_OPEN)
+	timeout(1000)	
+	driveToWP(defaultProps, -18, 0)
+	{
+		driveToWP(defaultProps, 96, 0) ||
+		timeout(6000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 0, -90) &&
 		autoDumper(robotDumper, DUMPER_TRAVEL) ||
 		timeout(5000)
 	}
-	autoDumper(robotDumper, DUMPER_HIGH)
-	{
-		autoDumper(robotDumper, DUMPER_HIGH) &&
-		autoClaw(robotClaw, CLAW_OPEN)
-	}
-	autoDumper(robotDumper, DUMPER_LOW)
-EndMode
-Mode CUBE_NEAR
-	autoClaw(robotClaw, CLAW_OPEN)	
-	driveToWP(defaultProps, -18, 0)
-	{
-		driveToWP(defaultProps, 0, -20) ||
-		timeout(2000)
-	}
-	driveToWP(defaultProps, 50, 0)
-	autoClaw(robotClaw, CLAW_CLOSE)
-	autoDumper(robotDumper, DUMPER_TRAVEL)
-	{
-		driveToWP(defaultProps, 0, 20) &&
-		autoDumper(robotDumper, DUMPER_TRAVEL)
-	}
 	{
 		driveToWP(defaultProps, -44, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_STOP) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 20, 0) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 0, -80) ||
+		timeout(5000)
+	}
+	{
+		driveToWP(defaultProps, 33, 0) ||
+		timeout(3000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 0, 90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
+	}
+	{
+		driveToWP(defaultProps, -20, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 12, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 0, -80) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
+	}
+	{
+		driveToWP(defaultProps, -12, 0) &&
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 48, 0) ||
+		timeout(3000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, -36, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, 0, 80) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(5000)
+	}
+	{
+		driveToWP(defaultProps, -24, 0) &&
+		autoDumper(robotDumper, DUMPER_HIGH) ||
+		timeout(2000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(3000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(3000)
+	}
+EndMode
+Mode L_CUBENEAR
+	autoClaw(robotClaw, CLAW_OPEN)	
+	{
+		driveToWP(defaultProps, -18, 0) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 0, -30) ||
+		timeout(1000)
+	}
+	{
+		driveToWP(defaultProps, 50, 0) ||
+		timeout(2000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(defaultProps, 0, 30) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, -40, 0) &&
 		autoDumper(robotDumper, DUMPER_TRAVEL)
 	}
 	{
@@ -135,16 +370,27 @@ Mode CUBE_NEAR
 	}
 	autoDumper(robotDumper, DUMPER_LOW)
 	driveToWP(defaultProps, 12, 0)
-	driveToWP(defaultProps, 0, -60)
-	driveToWP(defaultProps, 72, 0)
-	autoClaw(robotClaw, CLAW_CLOSE)
-	autoDumper(robotDumper, DUMPER_TRAVEL)
 	{
-		driveToWP(defaultProps, 0, 60) &&
-		autoDumper(robotDumper, DUMPER_TRAVEL)
+		driveToWP(defaultProps, 0, -45) ||
+		timeout(2000)
 	}
 	{
-		driveToWP(defaultProps, -48, 0) &&
+		driveToWP(defaultProps, 62, 0) ||
+		timeout(3000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(defaultProps, -12, 0) ||
+		timeout(2000)
+	}
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps, 0, 54) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, -38, 0) &&
 		autoDumper(robotDumper, DUMPER_TRAVEL) ||
 		timeout(3000)
 	}
@@ -152,6 +398,312 @@ Mode CUBE_NEAR
 	{
 		autoClaw(robotClaw, CLAW_OPEN) &&
 		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+	{
+		driveToWP(defaultProps, 0, 55) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 36, 0) ||
+		timeout(2000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(defaultProps, -6, 0) ||
+		timeout(2000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, -30, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 0, -55) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+EndMode
+Mode R_CUBENEAR
+	autoClaw(robotClaw, CLAW_OPEN)	
+	{
+		driveToWP(defaultProps, -18, 0) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 0, 30) ||
+		timeout(1000)
+	}
+	{
+		driveToWP(defaultProps, 50, 0) ||
+		timeout(2000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(defaultProps, 0, -30) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, -40, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
+	}
+	{
+		driveToWP(defaultProps, 0, -90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL)
+	}
+	{
+		driveToWP(defaultProps, -30, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+	driveToWP(defaultProps, 12, 0)
+	{
+		driveToWP(defaultProps, 0, 45) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 62, 0) ||
+		timeout(3000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(defaultProps, -12, 0) ||
+		timeout(2000)
+	}
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps, 0, -54) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	{
+		driveToWP(defaultProps, -38, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(3000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+	{
+		driveToWP(defaultProps, 0, -55) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 36, 0) ||
+		timeout(2000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(defaultProps, -6, 0) ||
+		timeout(2000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, -30, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 0, 55) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+EndMode
+Mode PROG_SKILLS
+	autoClaw(robotClaw, CLAW_OPEN)	
+	driveToWP(defaultProps, -36, 0)
+	driveToWP(defaultProps, 18, 0)
+	autoClaw(robotClaw, CLAW_CLOSE)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) &&
+		driveToWP(defaultProps, -36, 0) ||
+		timeout(3000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+	{
+		driveToWP(defaultProps, 32, 0) ||
+		timeout(3000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) &&
+		driveToWP(defaultProps, -36, 0) ||
+		timeout(3000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	{
+		autoClaw(robotClaw, CLAW_OPEN) &&
+		autoDumper(robotDumper, DUMPER_HIGH)
+	}
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	driveToWP(defaultProps, 22, 0)
+	{
+		driveToWP(defaultProps, 0, -80) ||
+		timeout(3000)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+	{
+		driveToWP(defaultProps, 34, 0) ||
+		timeout(3000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(defaultProps, 50, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, 0, 90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, -24, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	timeout(1000)
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(4000)
+	}
+	autoDumper(robotDumper, DUMPER_LOW)
+	{
+		driveToWP(defaultProps, 24, 0) ||
+		timeout(2000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		driveToWP(defaultProps, -28, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	autoDumper(robotDumper, DUMPER_HIGH)
+	timeout(1000)
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, 6, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(2000)
+	}
+	{
+		driveToWP(defaultProps, 0, 90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, -6, 0) &&
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, 100, 0) ||
+		timeout(6000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	autoDumper(robotDumper, DUMPER_TRAVEL)
+	{
+		driveToWP(defaultProps, 0, -90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, -6, 0) &&
+		autoDumper(robotDumper, DUMPER_HIGH) ||
+		timeout(4000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN) ||
+		timeout(4000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, 40, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, 0, -90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, -12, 0) &&
+		autoDumper(robotDumper, DUMPER_LOW) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, 84, 0) ||
+		timeout(6000)
+	}
+	autoClaw(robotClaw, CLAW_CLOSE)
+	{
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, 0, 90) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		driveToWP(defaultProps, -48, 0) &&
+		autoDumper(robotDumper, DUMPER_TRAVEL) ||
+		timeout(4000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) ||
+		timeout(4000)
+	}
+	{
+		autoDumper(robotDumper, DUMPER_HIGH) &&
+		autoClaw(robotClaw, CLAW_OPEN)
 	}
 	autoDumper(robotDumper, DUMPER_LOW)
 EndMode

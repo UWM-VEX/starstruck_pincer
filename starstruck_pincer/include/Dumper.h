@@ -18,6 +18,7 @@
 #define DUMPER_MIDDLE_FENCE 4
 #define DUMPER_SIDE_FENCE 5
 #define DUMPER_TRAVEL_TELE 6
+#define DUMPER_STOP 7
 
 struct Dumper {
 	PantherMotor topLeft;
