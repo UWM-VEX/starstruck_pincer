@@ -31,6 +31,10 @@ int alliance;
 #define RED 0
 #define BLUE 1
 
+#define red_(x) (alliance == RED) ? (x) : (-x)
+#define blue_(x) (alliance == BLUE) ? (x) : (-x)
+#define always_(x) x
+
 // START OF MODES
 #define DO_NOTHING 0
 #define CUBE_FIRST 1

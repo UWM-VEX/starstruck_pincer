@@ -685,8 +685,8 @@ if(autonomousSelection == CUBE_FIRST)
 {
 	command1 = initAutoClaw(robotClaw, CLAW_OPEN);
 	command2 = initTimeout(1000);
-	command3 = initDriveToWP(defaultProps, -18, 0);
-	command4 = initDriveToWP(defaultProps, 0, -20);
+	command3 = initDriveToWP(defaultProps, -20, 0);
+	command4 = initDriveToWP(defaultProps, 0, red_(-20));
 	command5 = initTimeout(2000);
 
 	command6 = initDriveToWP(defaultProps, 99, 0);
@@ -696,7 +696,7 @@ if(autonomousSelection == CUBE_FIRST)
 	command9 = initAutoDumper(robotDumper, DUMPER_TRAVEL);
 
 	command10 = initAutoDumper(robotDumper, DUMPER_TRAVEL);
-	command11 = initDriveToWP(defaultProps, 0, 110);
+	command11 = initDriveToWP(defaultProps, 0, blue_(110));
 
 	command12 = initAutoDumper(robotDumper, DUMPER_TRAVEL);
 	command13 = initDriveToWP(defaultProps, -15, 0);
@@ -710,7 +710,7 @@ if(autonomousSelection == CUBE_FIRST)
 	command19 = initDriveToWP(defaultProps, 42, 0);
 	command20 = initAutoDumper(robotDumper, DUMPER_TRAVEL);
 
-	command21 = initDriveToWP(defaultProps, 0, 90);
+	command21 = initDriveToWP(defaultProps, 0, always_(90));
 	command22 = initAutoDumper(robotDumper, DUMPER_TRAVEL);
 
 	command23 = initDriveToWP(defaultProps, -12, 0);
@@ -2533,4 +2533,3 @@ void autonomous()
 		//puts("Autonomous");
 	}
 }
-

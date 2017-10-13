@@ -6,9 +6,9 @@ EndMode
 Mode CUBE_FIRST
 	autoClaw(robotClaw, CLAW_OPEN)
 	timeout(1000)
-	driveToWP(defaultProps, -18, 0)
+	driveToWP(defaultProps, -20, 0)
 	{
-		driveToWP(defaultProps, 0, -20) ||
+		driveToWP(defaultProps, 0, red_(-20)) ||
 		timeout(2000)
 	}
 	{
@@ -21,7 +21,7 @@ Mode CUBE_FIRST
 	}
 	{
 		autoDumper(robotDumper, DUMPER_TRAVEL) &&
-		driveToWP(defaultProps, 0, 110)
+		driveToWP(defaultProps, 0, blue_(110))
 	}
 	{
 		autoDumper(robotDumper, DUMPER_TRAVEL) &&
@@ -39,7 +39,7 @@ Mode CUBE_FIRST
 		autoDumper(robotDumper, DUMPER_TRAVEL)
 	}
 	{
-		driveToWP(defaultProps, 0, 90) &&
+		driveToWP(defaultProps, 0, always_(90)) &&
 		autoDumper(robotDumper, DUMPER_TRAVEL)
 	}
 	{
